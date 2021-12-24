@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="day_current">#FF000000</color>
+    <color name="day_notcurrent">#818181</color>
+    <color name="day_current_dark">#C4C4C4</color>
+    <color name="day_notcurrent_dark">#818181</color>
+
+    <color name="sunday_current">#FF0000</color>
+    <color name="sunday_notcurrent">#FF9696</color>
+    <color name="background_infocard">#FFFFFFFF</color>
+    <color name="background_infocard_dark">#ff000000</color>
+    <color name="toolbar_tint">#FFFFFFFF</color>
+    <color name="tint">#FF3700B3</color>
+    <color name="background">#DADADA</color>
+    <color name="backgroundDark">#3C3D3B</color>
+</resources>

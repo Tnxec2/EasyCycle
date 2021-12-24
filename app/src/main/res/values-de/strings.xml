@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_home">Info</string>
+    <string name="title_calendar">Kalender</string>
+    <string name="title_statistic">Statistik</string>
+    <string name="previous_month">vorheriges Monat</string>
+    <string name="today">Heute</string>
+    <string name="next_month">nächsten Monat</string>
+    <string name="start_new_cycle">Anfang neuen Cyclus setzen</string>
+    <string name="no_description">keine Beschreibung</string>
+    <string name="days_on_home">Anzahl Tage auf dem Home Bildschirm</string>
+    <string name="years_in_statistic">Anzahl Jahre in Statistik</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="settings">Einstellungen</string>
+    <string name="import_csv_statistic">Import CSV Statistik</string>
+    <string name="choose_csv_file">Select CSV Datei</string>
+    <string name="import_statistic">Import Statistik</string>
+    <string name="import_description"><br>Sie können ihre Statistik aus CSV-Datei exportieren.\n\n
+Jede Zeile hat zwei Felder mit Semikolon getrennt.\n\n
+Erstes Feld ist Date von dem Zyklusstart im ISO-Format: yyyy-MM-dd, zwietes Feld ist Länge von dem an dem Tag beendetem Zyklus. Dateibeispiel:\n\n
+27.09.21;28\n
+26.10.21;29\n
+25.11.21;30\n
+23.12.21;28\n\n
+Klicken Sie OK um CSV-Datei auszuwählen.
+</br>
+    </string>
+    <string name="ok">OK</string>
+    <string name="delete_statistic_item">Statistikeintrag löschen</string>
+    <string name="are_you_sure_to_delete_statistic">Sind Sie sicher, dass Sie diese Statistikzeile löschne wollen?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="title_phases">Phasen</string>
+    <string name="phase_from">Tag %d</string>
+    <string name="phase_to">bis %d</string>
+    <string name="no_start_date_set"><br>Startdatum nicht gesetzt. \n Gib in Kalender letzte Cyclusstart ein oder importiere deine alte Daten in Statistik</br></string>
+    <string name="delete_phase_item">Phase löschen</string>
+    <string name="are_you_sure_to_delete_phase">Sind Sie sicher, dass diese Phase gelöscht werden soll?</string>
+    <string name="edit_phase">Phase bearbeiten</string>
+    <string name="add_new_phase">Neue Phase anlegen</string>
+    <string name="phase_description_placeholder">Beschreibung von der Phase</string>
+    <string name="no_statistic_data"><br>Keine Daten vorhanden.\nEntweder geben Sie im \"Kalender\" Anfangsdatum von dem letzten Zyklus ein oder importieren Sie CSV-Daten über Import-Knopf</br></string>
+    <string name="load_predefined_phases">Vordefinirte Phasen laden</string>
+    <string name="no_custom_phases_set"><br>keine benutzerdefinierte Phasen eingegeben.\nLaden Sie vordefenierte Phasen oder geben Sie eigene neue Phasen ein.</br></string>
+    <string name="are_you_sure_to_load_predefined_phases">Sind Sie sicher, dass Sie vordefenierte Phasen laden wollen? Alle Ihre Änderungen gehen verloren.</string>
+</resources>

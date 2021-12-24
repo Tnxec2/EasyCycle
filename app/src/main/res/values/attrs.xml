@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--- MyCalendar -->
+    <attr name="colorOnSunday" format="reference"/>
+    <attr name="colorOnSundayInactiv" format="reference"/>
+    <attr name="colorOnDay" format="reference"/>
+    <attr name="colorOnDayInactiv" format="reference"/>
+
+    <attr name="colorOnMainBackground" format="reference"/>
+    <attr name="colorOnCardBackground" format="reference"/>
+</resources>

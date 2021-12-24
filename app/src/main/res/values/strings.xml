@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name" translatable="false">Cycleora</string>
+    <string name="title_home">Info</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="title_statistic">Statistic</string>
+    <string name="previous_month">previous month</string>
+    <string name="today">today</string>
+    <string name="next_month">next month</string>
+    <string name="start_new_cycle">start new cycle</string>
+    <string name="no_description">no description</string>
+    <string name="days_on_home">Days on Home</string>
+    <string name="years_in_statistic">Years in Statistic</string>
+    <string name="cancel">Cancel</string>
+    <string name="settings">Settings</string>
+    <string name="import_csv_statistic">Import CSV Statistic</string>
+    <string name="choose_csv_file">Choose a CSV file</string>
+    <string name="import_statistic">Import Statistic</string>
+    <string name="import_description">You can import old Statistic from CSV file</string>
+    <string name="ok">OK</string>
+    <string name="delete_statistic_item">Delete statistic item</string>
+    <string name="are_you_sure_to_delete_statistic">Are you sure to delete this item?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="title_phases">Phases</string>
+    <string name="phase_from">Day %d</string>
+    <string name="phase_to">to %d</string>
+    <string name="no_start_date_set">No start date set</string>
+    <string name="delete_phase_item">Delete phase</string>
+    <string name="are_you_sure_to_delete_phase">Are you sure to delete this phase?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="edit_phase">Edit phase</string>
+    <string name="add_new_phase">add new phase</string>
+    <string name="phase_description_placeholder">phase description</string>
+    <string name="no_statistic_data"><br>No data exist.\n\nEnter the last cycle start date in the "calendar" or import data from CSV by Import-Button.</br></string>
+    <string name="load_predefined_phases">load predefined phases</string>
+    <string name="no_custom_phases_set">no custom phases set</string>
+    <string name="are_you_sure_to_load_predefined_phases">are you sure to load predefined phases. all your changes will be lost</string>
+</resources>
