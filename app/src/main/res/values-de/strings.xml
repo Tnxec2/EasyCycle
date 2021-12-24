@@ -43,4 +43,8 @@ Klicken Sie OK um CSV-Datei auszuwählen.
     <string name="load_predefined_phases">Vordefinirte Phasen laden</string>
     <string name="no_custom_phases_set"><br>keine benutzerdefinierte Phasen eingegeben.\nLaden Sie vordefenierte Phasen oder geben Sie eigene neue Phasen ein.</br></string>
     <string name="are_you_sure_to_load_predefined_phases">Sind Sie sicher, dass Sie vordefenierte Phasen laden wollen? Alle Ihre Änderungen gehen verloren.</string>
+    <string name="appwidget_title">Tag %d</string>
+    <string name="appwidget_description">Beschreibung der Zyklusphase</string>
+    <string name="add_widget">Widget hizufügen</string>
+    <string name="app_widget_description">Täglich Zyklusinformationen anzeigen</string>
 </resources>

@@ -29,4 +29,12 @@
     <style name="Theme.Cycleora.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Cycleora.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.Cycleora.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+        <item name="appWidgetRadius">8dp</item>
+        <item name="appWidgetPadding">4dp</item>
+        <item name="appWidgetInnerRadius">4dp</item>
+    </style>
+
+    <style name="Theme.Cycleora.AppWidgetContainer" parent="Theme.Cycleora.AppWidgetContainerParent" />
 </resources>

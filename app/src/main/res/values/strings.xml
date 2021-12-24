@@ -27,7 +27,6 @@
     <string name="no_start_date_set">No start date set</string>
     <string name="delete_phase_item">Delete phase</string>
     <string name="are_you_sure_to_delete_phase">Are you sure to delete this phase?</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="edit_phase">Edit phase</string>
     <string name="add_new_phase">add new phase</string>
     <string name="phase_description_placeholder">phase description</string>
@@ -35,4 +34,10 @@
     <string name="load_predefined_phases">load predefined phases</string>
     <string name="no_custom_phases_set">no custom phases set</string>
     <string name="are_you_sure_to_load_predefined_phases">are you sure to load predefined phases. all your changes will be lost</string>
+    <string name="appwidget_title">Cycle day %d</string>
+    <string name="appwidget_description">Day phase description</string>
+    <string name="appwidget_title_nodata">Cycle not started</string>
+    <string name="appwidget_description_nodata">no description</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">Show daily cycle phase description</string>
 </resources>

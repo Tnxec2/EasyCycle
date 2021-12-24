@@ -2,11 +2,16 @@
 <resources>
 
     <!--- MyCalendar -->
-    <attr name="colorOnSunday" format="reference"/>
-    <attr name="colorOnSundayInactiv" format="reference"/>
-    <attr name="colorOnDay" format="reference"/>
-    <attr name="colorOnDayInactiv" format="reference"/>
+    <attr name="colorOnSunday" format="reference" />
+    <attr name="colorOnSundayInactiv" format="reference" />
+    <attr name="colorOnDay" format="reference" />
+    <attr name="colorOnDayInactiv" format="reference" />
 
-    <attr name="colorOnMainBackground" format="reference"/>
-    <attr name="colorOnCardBackground" format="reference"/>
+    <attr name="colorOnMainBackground" format="reference" />
+    <attr name="colorOnCardBackground" format="reference" />
+    <declare-styleable name="AppWidgetAttrs">
+        <attr name="appWidgetPadding" format="dimension" />
+        <attr name="appWidgetInnerRadius" format="dimension" />
+        <attr name="appWidgetRadius" format="dimension" />
+    </declare-styleable>
 </resources>
