@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Cycleora" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.EasyCycle" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -21,20 +21,20 @@
         <item name="colorOnCardBackground">@color/background_infocard</item>
     </style>
 
-    <style name="Theme.Cycleora.NoActionBar">
+    <style name="Theme.EasyCycle.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Cycleora.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.EasyCycle.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.Cycleora.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.EasyCycle.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="Theme.Cycleora.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+    <style name="Theme.EasyCycle.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
         <item name="appWidgetRadius">8dp</item>
         <item name="appWidgetPadding">4dp</item>
         <item name="appWidgetInnerRadius">4dp</item>
     </style>
 
-    <style name="Theme.Cycleora.AppWidgetContainer" parent="Theme.Cycleora.AppWidgetContainerParent" />
+    <style name="Theme.EasyCycle.AppWidgetContainer" parent="Theme.EasyCycle.AppWidgetContainerParent" />
 </resources>

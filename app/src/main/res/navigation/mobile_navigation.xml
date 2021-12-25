@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.kontranik.cycleora.ui.home.HomeFragment"
+        android:name="com.kontranik.easycycle.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_calendar"
-        android:name="com.kontranik.cycleora.ui.calendar.CalendarFragment"
+        android:name="com.kontranik.easycycle.ui.calendar.CalendarFragment"
         android:label="@string/title_calendar"
         tools:layout="@layout/fragment_calendar" />
 
     <fragment
         android:id="@+id/navigation_statistic"
-        android:name="com.kontranik.cycleora.ui.statistic.StatisticFragment"
+        android:name="com.kontranik.easycycle.ui.statistic.StatisticFragment"
         android:label="@string/title_statistic"
         tools:layout="@layout/fragment_statistic" />
 
     <fragment
         android:id="@+id/navigation_phases"
-        android:name="com.kontranik.cycleora.ui.phases.PhasesFragment"
+        android:name="com.kontranik.easycycle.ui.phases.PhasesFragment"
         android:label="@string/title_phases"
         tools:layout="@layout/fragment_phases" />
 </navigation>

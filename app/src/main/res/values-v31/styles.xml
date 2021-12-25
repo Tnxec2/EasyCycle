@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Widget.Cycleora.AppWidget.Container" parent="android:Widget">
+    <style name="Widget.EasyCycle.AppWidget.Container" parent="android:Widget">
         <item name="android:clipToOutline">true</item>
         <item name="android:background">@drawable/app_widget_background</item>
     </style>

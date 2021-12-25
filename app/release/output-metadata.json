@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.kontranik.cycleora",
+  "applicationId": "com.kontranik.easycycle",
   "variantName": "release",
   "elements": [
     {
@@ -12,8 +12,8 @@
       "filters": [],
       "attributes": [],
       "versionCode": 1,
-      "versionName": "1.0.1",
-      "outputFile": "Cycleora-1.0.1-release.apk"
+      "versionName": "1.1.0",
+      "outputFile": "EasyCycle1.1.0-release.apk"
     }
   ],
   "elementType": "File"

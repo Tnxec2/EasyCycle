@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Cycleora</string>
+    <string name="app_name">simple cycle</string>
     <string name="title_home">Info</string>
     <string name="title_calendar">Calendar</string>
     <string name="title_statistic">Statistic</string>

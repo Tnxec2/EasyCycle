@@ -47,4 +47,7 @@ Klicken Sie OK um CSV-Datei auszuwählen.
     <string name="appwidget_description">Beschreibung der Zyklusphase</string>
     <string name="add_widget">Widget hizufügen</string>
     <string name="app_widget_description">Täglich Zyklusinformationen anzeigen</string>
+    <string name="app_name" translatable="false">einfach Zyklus</string>
+    <string name="appwidget_title_nodata">Zyklus nicht gestartet</string>
+    <string name="appwidget_description_nodata">keine Beschreibung</string>
 </resources>

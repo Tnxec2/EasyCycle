@@ -7,12 +7,12 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.kontranik.cycleora"
+        applicationId "com.kontranik.easycycle"
         minSdk 21
         targetSdk 32
         versionCode 1
-        versionName "1.0.1"
-        setProperty("archivesBaseName", "Cycleora-" + defaultConfig.versionName)
+        versionName "1.1.0"
+        setProperty("archivesBaseName", rootProject.name + defaultConfig.versionName)
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

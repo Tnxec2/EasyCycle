@@ -3,7 +3,7 @@
     <!--
     Having themes.xml for night-v31 because of the priority order of the resource qualifiers.
     -->
-    <style name="Theme.Cycleora.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault.DayNight">
+    <style name="Theme.EasyCycle.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault.DayNight">
         <item name="appWidgetRadius">16dp</item>
         <item name="appWidgetPadding">8dp</item>
         <item name="appWidgetInnerRadius">16dp</item>
