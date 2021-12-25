@@ -5,6 +5,7 @@
       <map>
         <entry key="../../Android/Sdk/platforms/android-32/data/res/drawable/ratingbar_indicator_material.xml" value="0.2359375" />
         <entry key="app/src/main/res/drawable-v21/app_widget_background.xml" value="0.2359375" />
+        <entry key="app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.38125" />
         <entry key="app/src/main/res/drawable/big_rounded_corners.xml" value="0.2203125" />
         <entry key="app/src/main/res/drawable/ic_baseline_autorenew_24.xml" value="0.2203125" />
         <entry key="app/src/main/res/drawable/ic_baseline_bar_chart_24.xml" value="0.2203125" />
