@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.settings.SettingsFragment"
-    android:layout_margin="16dp"
-    android:padding="16dp"
+    android:layout_margin="16sp"
+    android:padding="16sp"
     android:background="?attr/colorOnCardBackground"
     >
 
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/ll_settings2"
-        tools:layout_editor_absoluteX="16dp">
+        tools:layout_editor_absoluteX="16sp">
 
         <TextView
             android:id="@+id/textView"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment"
-    android:padding="16dp"
+    android:paddingHorizontal="16sp"
     android:background="?attr/colorOnMainBackground"
     >
 
@@ -108,5 +108,6 @@
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_no_data" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_no_data"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
