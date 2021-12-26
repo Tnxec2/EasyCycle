@@ -16,7 +16,7 @@ class TimeHelper {
             cal1.time = date1
             cal2.time = date2
             return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-                    && cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
+                    && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)
                     && cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH)
         }
 
