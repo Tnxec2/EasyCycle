@@ -2,6 +2,7 @@ package com.kontranik.easycycle.database
 
 import android.content.Context
 import android.util.Log
+import com.kontranik.easycycle.constants.DefaultSettings
 import com.kontranik.easycycle.models.LastCycle
 import com.kontranik.easycycle.models.StatisticItem
 import java.util.*
@@ -54,6 +55,13 @@ class DatabaseService(context: Context) {
         val item = adapter.getOneByDate(lastCycle.cycleStart)
         if (item == null) adapter.insert(lastCycle)
         adapter.close()
+    }
+
+    fun getAverageLength(): Int? {
+        adapter.open()
+        val result = adapter.getAverageLengthOfLastMonths()
+        adapter.close()
+        return result
     }
 
 /*    fun deleteAll() {

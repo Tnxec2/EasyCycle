@@ -80,6 +80,25 @@ class DatabaseAdapter(context: Context) {
     val count: Long
         get() = DatabaseUtils.queryNumEntries(database, DatabaseHelper.TABLE)
 
+    fun getAverageLengthOfLastMonths(): Int? {
+        var result: Int? = null
+
+        val query = String.format(
+            "select avg(%s) from (select %s FROM %s ORDER BY %s DESC LIMIT 12);",
+            DatabaseHelper.COLUMN_LASTCYCLELENGTH,
+            DatabaseHelper.COLUMN_LASTCYCLELENGTH,
+            DatabaseHelper.TABLE,
+            DatabaseHelper.COLUMN_CYCLESTART,
+        )
+        val cursor: Cursor = database!!.rawQuery(query, null)
+        if (cursor.moveToFirst()) {
+            result = cursor.getInt(0)
+            Log.d("getAverageLength", result.toString())
+        }
+        cursor.close()
+        return result
+    }
+
     fun getOneByDate(lastCycleStartDate: Date): LastCycle? {
         var lastCycle: LastCycle? = null
         val searchDate = sdfIso.format(lastCycleStartDate)

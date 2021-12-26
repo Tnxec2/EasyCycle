@@ -266,6 +266,7 @@ class CalendarFragment : Fragment() {
             initCalendar()
             return
         }
+        val averageLength: Int = databaseService.getAverageLength() ?: lastCycle!!.lengthOfLastCycle
         val workCalendar = Calendar.getInstance()
         workCalendar.time = lastCycle!!.cycleStart
 
@@ -287,7 +288,7 @@ class CalendarFragment : Fragment() {
             val key: String = sdfISO.format(workCalendar.time)
             var color: String? = null
             if (dayCycle > 0) {
-                if (dayCycle > lastCycle!!.lengthOfLastCycle) {
+                if (dayCycle > averageLength) {
                     dayCycle = 1
                     lastCycleStart = workCalendar.time
                     repeated = true
