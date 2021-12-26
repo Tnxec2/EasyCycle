@@ -19,6 +19,7 @@
         <item name="colorOnDayInactiv">@color/day_notcurrent</item>
         <item name="colorOnMainBackground">@color/background</item>
         <item name="colorOnCardBackground">@color/background_infocard</item>
+
     </style>
 
     <style name="Theme.EasyCycle.NoActionBar">

@@ -2,6 +2,7 @@ package com.kontranik.easycycle.storage
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.google.gson.Gson
 import com.kontranik.easycycle.constants.DefaultPhasesData
 import com.kontranik.easycycle.models.LastCycle

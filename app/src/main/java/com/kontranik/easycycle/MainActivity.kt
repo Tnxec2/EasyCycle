@@ -1,6 +1,7 @@
 package com.kontranik.easycycle
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -8,7 +9,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.kontranik.easycycle.constants.DefaultSettings
 import com.kontranik.easycycle.databinding.ActivityMainBinding
+import com.kontranik.easycycle.storage.SettingsService
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,10 +33,14 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_calendar, R.id.navigation_statistic, R.id.navigation_phases
+                R.id.navigation_info, R.id.navigation_calendar, R.id.navigation_statistic, R.id.navigation_phases
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        var settings = SettingsService.loadSettings(this)
+        if ( settings == null) settings = DefaultSettings.settings
+        navView.selectedItemId = settings.showOnStart
     }
 }

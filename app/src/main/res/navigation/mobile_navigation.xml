@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_info">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_info"
         android:name="com.kontranik.easycycle.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_info" />
 
     <fragment
         android:id="@+id/navigation_calendar"

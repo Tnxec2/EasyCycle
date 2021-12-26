@@ -1,6 +1,7 @@
 package com.kontranik.easycycle.ui.settings
 
 import android.os.Bundle
+import android.util.Log
 
 import android.view.ViewGroup
 
@@ -15,11 +16,24 @@ import com.kontranik.easycycle.models.Settings
 import com.kontranik.easycycle.storage.SettingsService
 import com.kontranik.easycycle.MainActivity
 import com.kontranik.easycycle.R
+import android.widget.AdapterView
+
+import android.widget.ArrayAdapter
+
+
+
 
 
 class SettingsFragment : Fragment() {
 
     private var listener: SettingsListener? = null
+
+    private val showOnStartItemsIds = arrayListOf<Int>(
+        R.id.navigation_info,
+        R.id.navigation_calendar,
+        R.id.navigation_statistic,
+        R.id.navigation_phases)
+    private var showOnStartItemsTitle = arrayListOf<String>( )
 
     interface SettingsListener {
         fun onSettingsChanged(settings: Settings)
@@ -47,6 +61,13 @@ class SettingsFragment : Fragment() {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        showOnStartItemsTitle = arrayListOf<String>(
+            getString(R.string.title_home),
+            getString(R.string.title_calendar),
+            getString(R.string.title_statistic),
+            getString(R.string.title_phases)
+        )
+
         val tempSettings = SettingsService.loadSettings(requireContext())
         if ( tempSettings != null) settings = tempSettings
 
@@ -55,11 +76,22 @@ class SettingsFragment : Fragment() {
             parentFragmentManager.popBackStack()
         }
 
+        val spinnerShowOnStart = binding.spinnerSettingsShowOnStart
+        val aa =
+            ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, showOnStartItemsTitle)
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerShowOnStart.adapter = aa
+        var pos = 0
+        showOnStartItemsIds.forEachIndexed { index, item -> if (item == settings.showOnStart) pos = index }
+        spinnerShowOnStart.setSelection(pos)
+        Log.d("selection", pos.toString())
+
         val saveButton = binding.btnSettingsSave
         saveButton.setOnClickListener {
-            val newSettings = Settings(
+           val newSettings = Settings(
                 daysOnHome = textDaysOnHome.text.toString().toInt(),
                 yearsOnStatistic = textYearsOnStatistic.text.toString().toInt(),
+                showOnStart = showOnStartItemsIds[spinnerShowOnStart.selectedItemPosition]
             )
             SettingsService.saveSettings(newSettings, requireContext())
             if ( listener != null) listener!!.onSettingsChanged(newSettings)
@@ -79,4 +111,5 @@ class SettingsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

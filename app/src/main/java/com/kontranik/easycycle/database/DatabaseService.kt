@@ -51,7 +51,8 @@ class DatabaseService(context: Context) {
     fun add(lastCycle: LastCycle) {
         adapter.open()
         Log.d("DatabaseService", "add")
-        adapter.insert(lastCycle)
+        val item = adapter.getOneByDate(lastCycle.cycleStart)
+        if (item == null) adapter.insert(lastCycle)
         adapter.close()
     }
 

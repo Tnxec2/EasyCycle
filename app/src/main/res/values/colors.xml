@@ -17,6 +17,7 @@
     <color name="background_infocard">#FFFFFFFF</color>
     <color name="background_infocard_dark">#ff000000</color>
     <color name="toolbar_tint">#FFFFFFFF</color>
+    <color name="toolbar_tint_dark">#FF000000</color>
     <color name="tint">#FF3700B3</color>
     <color name="background">#DADADA</color>
     <color name="backgroundDark">#3C3D3B</color>

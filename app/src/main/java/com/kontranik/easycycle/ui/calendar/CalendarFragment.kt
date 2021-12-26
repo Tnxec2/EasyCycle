@@ -330,8 +330,11 @@ class CalendarFragment : Fragment() {
             }
             infocardDescription.text = desc
         }
-        if ( (lastCycle != null && activeDate.time.time <= lastCycle!!.cycleStart.time)
-            || activeDate.timeInMillis >= Date().time )
+        if ( ( lastCycle != null
+                    && ( TimeHelper.isLess(activeDate.time, lastCycle!!.cycleStart)
+                    || TimeHelper.isEqual(activeDate.time, lastCycle!!.cycleStart) )
+                    )
+            || TimeHelper.isGreat(activeDate.time, Date())  )
                 infocardAddButton.visibility = View.INVISIBLE
         initCalendar()
     }

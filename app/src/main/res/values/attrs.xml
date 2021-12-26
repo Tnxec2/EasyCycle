@@ -9,6 +9,7 @@
 
     <attr name="colorOnMainBackground" format="reference" />
     <attr name="colorOnCardBackground" format="reference" />
+
     <declare-styleable name="AppWidgetAttrs">
         <attr name="appWidgetPadding" format="dimension" />
         <attr name="appWidgetInnerRadius" format="dimension" />

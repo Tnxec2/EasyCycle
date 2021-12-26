@@ -47,7 +47,13 @@ Klicken Sie OK um CSV-Datei auszuwählen.
     <string name="appwidget_description">Beschreibung der Zyklusphase</string>
     <string name="add_widget">Widget hizufügen</string>
     <string name="app_widget_description">Täglich Zyklusinformationen anzeigen</string>
-    <string name="app_name" translatable="false">einfach Zyklus</string>
+    <string name="app_name" translatable="false">Einfach Zyklus</string>
     <string name="appwidget_title_nodata">Zyklus nicht gestartet</string>
     <string name="appwidget_description_nodata">keine Beschreibung</string>
+    <string name="save">Speichern</string>
+    <string name="start_date_of_last_cycle">Startdatum von letztem Zyklus</string>
+    <string name="average_cycle_length">Länge von letztem Zyklus</string>
+    <string name="set">Setzen</string>
+    <string name="no_date_set_date_placeholder">Datum nicht gesetzt</string>
+    <string name="no_length_set_placeholder">Länge nicht gesetzt</string>
 </resources>

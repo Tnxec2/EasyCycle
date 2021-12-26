@@ -66,7 +66,6 @@
                         android:src="@drawable/ic_baseline_calendar_today_24"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/ib_next_month"
-
                         android:backgroundTint="?attr/colorPrimary"
                         />
                     <TextView
@@ -76,7 +75,7 @@
                         android:text="22"
                         android:textSize="11sp"
                         android:paddingTop="5sp"
-                        android:textColor="@color/toolbar_tint"
+                        android:textColor="?attr/colorOnPrimary"
                         app:layout_constraintTop_toTopOf="@id/ib_calendar_today"
                         app:layout_constraintStart_toStartOf="@id/ib_calendar_today"
                         app:layout_constraintEnd_toEndOf="@id/ib_calendar_today"

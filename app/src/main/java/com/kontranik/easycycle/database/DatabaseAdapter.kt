@@ -80,7 +80,23 @@ class DatabaseAdapter(context: Context) {
     val count: Long
         get() = DatabaseUtils.queryNumEntries(database, DatabaseHelper.TABLE)
 
-    fun getOne(id: Long): LastCycle? {
+    fun getOneByDate(lastCycleStartDate: Date): LastCycle? {
+        var lastCycle: LastCycle? = null
+        val searchDate = sdfIso.format(lastCycleStartDate)
+        val query = String.format(
+            "SELECT * FROM %s WHERE %s=?",
+            DatabaseHelper.TABLE,
+            DatabaseHelper.COLUMN_CYCLESTART
+        )
+        val cursor: Cursor = database!!.rawQuery(query, arrayOf(searchDate))
+        if (cursor.moveToFirst()) {
+            lastCycle = getItemFromCursor(cursor)
+        }
+        cursor.close()
+        return lastCycle
+    }
+
+    fun getOneById(id: Long): LastCycle? {
         var lastCycle: LastCycle? = null
         val query = String.format(
             "SELECT * FROM %s WHERE %s=?",

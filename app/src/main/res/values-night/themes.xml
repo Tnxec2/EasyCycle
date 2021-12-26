@@ -19,5 +19,6 @@
         <item name="colorOnDayInactiv">@color/day_notcurrent_dark</item>
         <item name="colorOnMainBackground">@color/backgroundDark</item>
         <item name="colorOnCardBackground">@color/background_infocard_dark</item>
+        <item name="tint">@color/toolbar_tint_dark</item>
     </style>
 </resources>

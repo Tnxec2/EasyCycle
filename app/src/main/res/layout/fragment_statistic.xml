@@ -9,19 +9,36 @@
     android:background="?attr/colorOnMainBackground"
     >
 
-    <TextView
-        android:id="@+id/tv_statistic_nodate"
+    <LinearLayout
+        android:id="@+id/ll_statistic_nodata"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/no_statistic_data"
-        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        >
+    <TextView
+        android:id="@+id/tv_statistic_nodate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/no_statistic_data"
+
         />
 
+    <Button
+        android:id="@+id/btn_statistic_import_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16sp"
+        android:layout_gravity="center"
+        android:text="@string/import_csv_statistic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_statistic_nodate" />
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_statistic_list"
         android:layout_width="match_parent"

@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -34,7 +35,7 @@ class StatisticFragment : Fragment() {
     private lateinit var databaseService: DatabaseService
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var placeholderTextView: TextView
+    private lateinit var llNoData: LinearLayout
 
 
     private var settings: Settings = DefaultSettings.settings
@@ -58,14 +59,17 @@ class StatisticFragment : Fragment() {
 
         databaseService = DatabaseService(requireContext())
 
-        placeholderTextView = binding.tvStatisticNodate
-        placeholderTextView.visibility = View.GONE
+        llNoData = binding.llStatisticNodata
+        llNoData.visibility = View.GONE
 
         recyclerView = binding.rvStatisticList
         val adapter = StatisticListAdapter(context, listOfYears)
         val layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = layoutManager
+
+        val btnImportStatistic = binding.btnStatisticImportData
+        btnImportStatistic.setOnClickListener { openImportInfoAlert() }
 
         loadArchiv()
 
@@ -78,9 +82,11 @@ class StatisticFragment : Fragment() {
         recyclerView.adapter!!.notifyDataSetChanged()
         val items = databaseService.getArchivList(settings.yearsOnStatistic)
         if ( items.isEmpty() ) {
-            placeholderTextView.visibility = View.VISIBLE
+            llNoData.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
         } else {
-            placeholderTextView.visibility = View.GONE
+            llNoData.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
         }
         listOfYears.addAll(items)
         recyclerView.adapter!!.notifyDataSetChanged()
