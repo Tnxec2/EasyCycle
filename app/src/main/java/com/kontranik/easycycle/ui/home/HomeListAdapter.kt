@@ -2,7 +2,6 @@ package com.kontranik.easycycle.ui.home
 
 
 import android.content.Context
-import android.graphics.Color
 
 import android.widget.TextView
 
@@ -13,6 +12,7 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import com.kontranik.easycycle.R
+import com.kontranik.easycycle.components.circularTextView.CircularTextView
 import com.kontranik.easycycle.models.CDay
 import java.text.SimpleDateFormat
 import java.util.*
@@ -39,9 +39,9 @@ class HomeListAdapter internal constructor(context: Context?, private val cDays:
         }
         holder.descriptionView.text = desc
         if (cDay.color != null) {
-            holder.badgeView.setBackgroundColor(Color.parseColor(cDay.color))
+            holder.badgeView.setSolidColor(cDay.color)
         } else {
-            holder.badgeView.setBackgroundColor(Color.TRANSPARENT)
+            holder.badgeView.clearSolidColor()
         }
     }
 
@@ -52,7 +52,7 @@ class HomeListAdapter internal constructor(context: Context?, private val cDays:
     class ViewHolder internal constructor(view: View) : RecyclerView.ViewHolder(view) {
         val titleView: TextView = view.findViewById(R.id.tv_infocard_title_text)
         val descriptionView: TextView = view.findViewById(R.id.tv_infocard_title_description)
-        val badgeView: TextView = view.findViewById(R.id.tv_infocard_title_badge)
+        val badgeView: CircularTextView = view.findViewById(R.id.tv_infocard_title_badge)
     }
 
 }

@@ -19,6 +19,7 @@ import android.util.TypedValue
 import android.view.*
 import android.widget.ImageButton
 import androidx.annotation.ColorInt
+import com.kontranik.easycycle.components.circularTextView.CircularTextView
 import com.kontranik.easycycle.models.LastCycle
 import com.kontranik.easycycle.storage.SettingsService
 import com.kontranik.easycycle.components.mycalendar.MarkedDate
@@ -185,7 +186,7 @@ class CalendarFragment : Fragment() {
 
                 calendar.time = d
 
-                val cel = layoutInflater.inflate(R.layout.mycalendar_cell, null) as TextView
+                val cel = layoutInflater.inflate(R.layout.mycalendar_cell, null) as CircularTextView
                 cel.setOnClickListener {
                     activeDate.time = d
                     loadCycleData()
@@ -209,7 +210,7 @@ class CalendarFragment : Fragment() {
                 if (markedData.containsKey(dateString)) {
                     val markedDate = markedData[dateString]
                     if ( markedDate != null && markedDate.marked && markedDate.color != null) {
-                        cel.setBackgroundColor(Color.parseColor(markedDate.color))
+                        cel.setSolidColor(markedDate.color)
                     }
                 }
                 cel.text = calendar.get(Calendar.DAY_OF_MONTH).toString()

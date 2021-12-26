@@ -24,14 +24,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
+            <com.kontranik.easycycle.components.circularTextView.CircularTextView
                 android:id="@+id/tv_infocard_title_badge"
-                android:layout_width="0dp"
-                android:layout_height="40sp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
+                android:padding="5sp"
                 android:text="22"
-                android:background="@drawable/rounded_corners"
                 style="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="bold" />
 
@@ -50,6 +49,7 @@
             android:id="@+id/divider_infocard"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginTop="2dp"
             android:background="?android:attr/listDivider" />
 
         <TextView
