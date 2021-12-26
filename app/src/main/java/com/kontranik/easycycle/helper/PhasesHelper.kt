@@ -47,7 +47,7 @@ class PhasesHelper {
             return allDays
         }
 
-        fun getPhasesByDay(context: Context, day: Long): List<Phase> {
+        fun getPhasesByDay(context: Context, day: Int): List<Phase> {
             val phases = SettingsService.loadCustomPhases(context)
             val result: MutableList<Phase> = mutableListOf()
             phases.forEach {

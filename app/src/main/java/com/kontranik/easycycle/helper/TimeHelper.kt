@@ -5,9 +5,9 @@ import java.util.*
 class TimeHelper {
 
     companion object {
-        fun getDifferenceInDays(date1: Date, date2: Date): Long {
+        fun getDifferenceInDays(date1: Date, date2: Date): Int {
             val timeDifference = date1.time - date2.time;
-            return timeDifference / 1000 / 60 / 60 / 24
+            return (timeDifference / 1000 / 60 / 60 / 24).toInt()
         }
 
         fun isEqual(date1: Date, date2: Date): Boolean{

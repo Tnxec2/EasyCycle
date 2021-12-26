@@ -11,7 +11,7 @@ class DefaultSettings {
             daysOnHome = 7,
             yearsOnStatistic = 3,
         )
-        const val defaultCycleLength = 28
+        const val defaultCycleLength: Int = 28
 
     }
 }

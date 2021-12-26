@@ -282,7 +282,7 @@ class CalendarFragment : Fragment() {
         var lastCycleStart = lastCycle!!.cycleStart
         var repeated = false
         while (workCalendar.timeInMillis < maxDateCalendar.timeInMillis) {
-            var dayCycle = TimeHelper.getDifferenceInDays(workCalendar.time, lastCycleStart) + 1
+            var dayCycle: Int = TimeHelper.getDifferenceInDays(workCalendar.time, lastCycleStart) + 1
             val markedData = MarkedDate()
             val key: String = sdfISO.format(workCalendar.time)
             var color: String? = null
@@ -306,7 +306,7 @@ class CalendarFragment : Fragment() {
                     if (tempColor != null) {
                         if ( it.markwholephase != null && it.markwholephase == true ) {
                             if ( dayCycle >= it.from && (it.to == null || dayCycle <= it.to!!)) color = tempColor
-                        } else if (dayCycle == it.from) color = tempColor
+                        } else if (dayCycle == it.from.toInt()) color = tempColor
                     }
                 }
             }
@@ -345,8 +345,10 @@ class CalendarFragment : Fragment() {
             activeDate.set(Calendar.YEAR, year)
             activeDate.set(Calendar.MONTH, monthOfYear)
             activeDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-            var length = SettingsService.loadLastCycleStart(requireContext())?.lengthOfLastCycle
-            if ( length == null) length = DefaultSettings.defaultCycleLength
+            var length = DefaultSettings.defaultCycleLength
+            if ( lastCycle != null)
+                length = TimeHelper.getDifferenceInDays(activeDate.time, lastCycle!!.cycleStart)
+
             val lastCycle = LastCycle(cycleStart = activeDate.time, lengthOfLastCycle = length)
             SettingsService.saveLastCycleStart(lastCycle, requireContext())
             databaseService.add(lastCycle)

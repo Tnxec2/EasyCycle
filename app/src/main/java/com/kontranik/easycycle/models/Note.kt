@@ -1,6 +1,6 @@
 package com.kontranik.easycycle.models
 
 class Note(
-    val day: Long,
+    val day: Int,
     val notes: MutableList<String>) { }
 
