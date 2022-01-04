@@ -1,14 +1,12 @@
 package com.kontranik.easycycle
 
 import android.os.Bundle
-import android.util.Log
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kontranik.easycycle.constants.DefaultSettings
 import com.kontranik.easycycle.databinding.ActivityMainBinding
 import com.kontranik.easycycle.storage.SettingsService

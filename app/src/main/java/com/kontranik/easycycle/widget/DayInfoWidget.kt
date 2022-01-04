@@ -1,21 +1,15 @@
 package com.kontranik.easycycle.widget
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
-import android.view.View
+import android.content.Intent
 import android.widget.RemoteViews
+import com.kontranik.easycycle.MainActivity
 import com.kontranik.easycycle.R
 import com.kontranik.easycycle.helper.PhasesHelper
 import com.kontranik.easycycle.storage.SettingsService
-import android.app.PendingIntent
-
-import android.content.Intent
-import android.os.Build
-import android.util.Log
-import android.widget.Toast
-import androidx.annotation.RequiresApi
-import com.kontranik.easycycle.MainActivity
 
 
 /**

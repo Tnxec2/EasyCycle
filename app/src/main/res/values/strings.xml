@@ -46,4 +46,15 @@
     <string name="set">Set</string>
     <string name="no_date_set_date_placeholder">no date set</string>
     <string name="no_length_set_placeholder">no length set</string>
+    <string name="mark_whole_phase">mark whole phase in calendar</string>
+    <string name="mark_only_phase_start">mark only start of phase in calendar</string>
+    <string name="set_next_cycle_start">Set start of next cycle</string>
+    <string name="color_current">Color current cycle</string>
+    <string name="color_future">Color cycles in future</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="description">Description</string>
+    <string name="remove_color">remove color</string>
+    <string name="edit_average_cycle_length">Edit average cycle length</string>
+    <string name="show_on_start">Show on start</string>
 </resources>

@@ -2,7 +2,6 @@ package com.kontranik.easycycle.database
 
 import android.content.Context
 import android.util.Log
-import com.kontranik.easycycle.constants.DefaultSettings
 import com.kontranik.easycycle.models.LastCycle
 import com.kontranik.easycycle.models.StatisticItem
 import java.util.*

@@ -1,8 +1,6 @@
 package com.kontranik.easycycle.helper
 
 import android.content.Context
-import android.util.Log
-import com.kontranik.easycycle.constants.DefaultPhasesData
 import com.kontranik.easycycle.models.CDay
 
 import com.kontranik.easycycle.models.LastCycle

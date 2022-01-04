@@ -14,7 +14,6 @@ import java.util.*
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
-import android.graphics.Color
 import android.util.TypedValue
 import android.view.*
 import android.widget.ImageButton
@@ -153,18 +152,15 @@ class CalendarFragment : Fragment() {
 
         tableLayout.removeAllViews()
 
-
         val matrix = generateMatrix()
 
         val rowHeader = TableRow(context)
         val lp = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT)
         rowHeader.layoutParams = lp
 
-
-
         for (i in 0..6) {
             val cel = layoutInflater.inflate(R.layout.mycalendar_header, null) as TextView
-            if ( i == 6) {
+            if (isSunday(i)) {
                 cel.setTextColor(colSundayActiv)
             } else {
                 cel.setTextColor(colDayActiv)
@@ -174,9 +170,6 @@ class CalendarFragment : Fragment() {
             rowHeader.addView(cel)
         }
         tableLayout.addView(rowHeader)
-
-
-
 
         for (i in matrix.indices) {
             val row = TableRow(context)
@@ -191,18 +184,18 @@ class CalendarFragment : Fragment() {
                     activeDate.time = d
                     loadCycleData()
                 }
-                if ( j == 6) {
-                    if ( calendar.get(Calendar.YEAR) == activeDate.get(Calendar.YEAR) && calendar.get(Calendar.MONTH) == activeDate.get(Calendar.MONTH))
+                if (isSunday(j)) {
+                    if (isCurrentMonth(calendar))
                         cel.setTextColor(colSundayActiv)
                     else
                         cel.setTextColor(colSundayInactiv)
                 } else {
-                    if ( calendar.get(Calendar.YEAR) == activeDate.get(Calendar.YEAR) && calendar.get(Calendar.MONTH) == activeDate.get(Calendar.MONTH))
+                    if (isCurrentMonth(calendar))
                         cel.setTextColor(colDayActiv)
                     else
                         cel.setTextColor(colDayActivInactiv)
                 }
-                if ( calendar.get(Calendar.YEAR) == activeDate.get(Calendar.YEAR) && calendar.get(Calendar.MONTH) == activeDate.get(Calendar.MONTH) && calendar.get(Calendar.DAY_OF_MONTH) == activeDate.get(Calendar.DAY_OF_MONTH)) {
+                if (isActiveDay(calendar)) {
                     cel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                     cel.setTypeface(null, Typeface.BOLD)
                 }
@@ -220,6 +213,18 @@ class CalendarFragment : Fragment() {
             tableLayout.addView(row, i+1)
         }
     }
+
+    private fun isActiveDay(calendar: Calendar) =
+        calendar.get(Calendar.YEAR) == activeDate.get(Calendar.YEAR) && calendar.get(Calendar.MONTH) == activeDate.get(
+            Calendar.MONTH
+        ) && calendar.get(Calendar.DAY_OF_MONTH) == activeDate.get(Calendar.DAY_OF_MONTH)
+
+    private fun isCurrentMonth(calendar: Calendar) =
+        calendar.get(Calendar.YEAR) == activeDate.get(Calendar.YEAR) && calendar.get(Calendar.MONTH) == activeDate.get(
+            Calendar.MONTH
+        )
+
+    private fun isSunday(j: Int) = j == 6
 
     private fun generateMatrix(): MutableList<MutableList<Date>> {
         val matrix: MutableList<MutableList<Date>> = mutableListOf()
@@ -321,15 +326,11 @@ class CalendarFragment : Fragment() {
         markedData = tempMarkDate
         notes = tempNotes
 
-
         val key = sdfISO.format(activeDate.time)
         val notes = notes[key]
         if ( notes != null ) {
             infocardBadge.text = notes.day.toString()
-            val desc = StringBuffer()
-            notes.notes.forEach{
-                desc.append(it)
-            }
+            val desc = notes.notes.joinToString("\n")
             infocardDescription.text = desc
         }
         if ( ( lastCycle != null
@@ -365,6 +366,7 @@ class CalendarFragment : Fragment() {
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH),
             )
+            dialog.setTitle(getString(R.string.set_next_cycle_start))
             if (lastCycle != null) dialog.datePicker.minDate = lastCycle!!.cycleStart.time
             dialog.datePicker.maxDate = Date().time
             dialog.show()

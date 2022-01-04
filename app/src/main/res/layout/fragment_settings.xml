@@ -34,7 +34,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:maxLength="2"
-            android:inputType="number" />
+            android:inputType="number"
+            android:importantForAutofill="no" />
     </LinearLayout>
 
     <LinearLayout
@@ -61,7 +62,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:maxLength="2"
-            android:inputType="number" />
+            android:inputType="number"
+            android:importantForAutofill="no" />
 
     </LinearLayout>
 
@@ -71,14 +73,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/ll_settings2"
-        tools:layout_editor_absoluteX="16sp">
+        tools:layout_editor_absoluteX="16sp"
+        android:layout_marginBottom="16sp">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Show on start" />
+            android:text="@string/show_on_start" />
 
         <Spinner
             android:id="@+id/spinner_settings_show_on_start"
@@ -94,15 +97,14 @@
         android:text="@string/cancel"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_settings_save" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <Button
         android:id="@+id/btn_settings_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Save"
-        android:layout_marginTop="16sp"
+        android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

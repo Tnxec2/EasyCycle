@@ -8,97 +8,103 @@
     android:paddingHorizontal="16sp"
     android:background="?attr/colorOnMainBackground"
     >
-
-    <LinearLayout
-        android:id="@+id/ll_no_data"
+    <ScrollView
+        android:id="@+id/scrollView_no_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/tv_home_nodate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/no_start_date_set" />
-
-        <TextView
-            android:id="@+id/tv_home_nodate_label_startdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
-            android:gravity="center"
-            android:text="@string/start_date_of_last_cycle" />
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            >
 
             <TextView
-                android:id="@+id/tv_home_nodate_startdate"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                android:id="@+id/tv_home_nodate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/no_date_set_date_placeholder"
-                style="@style/Widget.AppCompat.EditText"
-                />
+                android:text="@string/no_start_date_set" />
 
-            <ImageButton
-                android:id="@+id/ib_home_nodate_edit_date"
+            <TextView
+                android:id="@+id/tv_home_nodate_label_startdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:gravity="center"
+                android:text="@string/start_date_of_last_cycle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_home_nodate_startdate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/no_date_set_date_placeholder"
+                    style="@style/Widget.AppCompat.EditText"
+                    />
+
+                <ImageButton
+                    android:id="@+id/ib_home_nodate_edit_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="?attr/colorPrimary"
+                    android:src="@drawable/ic_baseline_calendar_today_24" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_home_nodate_label_average_cycle_length"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/average_cycle_length" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_home_nodate_average_cycle_length"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/no_length_set_placeholder"
+                    style="@style/Widget.AppCompat.EditText"
+                    />
+
+                <ImageButton
+                    android:id="@+id/ib_home_nodate_edit_length"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="?attr/colorPrimary"
+                    android:src="@drawable/ic_baseline_edit_24"
+                    android:contentDescription="@string/edit_average_cycle_length" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_home_nodate_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="?attr/colorPrimary"
-                android:src="@drawable/ic_baseline_calendar_today_24" />
-
+                android:layout_marginTop="20sp"
+                android:text="@string/save" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_home_nodate_label_average_cycle_length"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/average_cycle_length" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_home_nodate_average_cycle_length"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/no_length_set_placeholder"
-                style="@style/Widget.AppCompat.EditText"
-                />
-
-            <ImageButton
-                android:id="@+id/ib_home_nodate_edit_length"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:backgroundTint="?attr/colorPrimary"
-                android:src="@drawable/ic_baseline_edit_24" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_home_nodate_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20sp"
-            android:text="@string/save" />
-    </LinearLayout>
-
+    </ScrollView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_home_info_list"
         android:layout_width="match_parent"
@@ -108,6 +114,6 @@
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_no_data"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView_no_data"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

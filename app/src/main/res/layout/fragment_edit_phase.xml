@@ -1,152 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.phases.editphase.EditPhaseFragment"
-    android:padding="16sp">
-
-    <TextView
-        android:id="@+id/tv_editphase_from"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="From"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/edittext_editphase_from"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_editphase_from" />
-
-    <TextView
-        android:id="@+id/tv_editphase_to"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bis"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_editphase_from" />
-
-    <EditText
-        android:id="@+id/editText_editphase_to"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_editphase_to" />
-
-    <TextView
-        android:id="@+id/tv_editphase_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_editphase_to" />
-
-    <EditText
-        android:id="@+id/editText_editphase_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:lines="5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_editphase_description" />
-
-    <LinearLayout
-        android:id="@+id/ll_editphase_color"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/editText_editphase_description"
-        tools:layout_editor_absoluteX="16sp">
+        tools:context=".ui.phases.editphase.EditPhaseFragment"
+        android:padding="16sp">
 
         <TextView
-            android:id="@+id/tv_editphase_color"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10sp"
-            android:layout_weight="1"
-            android:paddingVertical="10sp"
-            android:text="Color current" />
-
-        <TextView
-            android:id="@+id/tv_editphase_color_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10sp"
-            android:layout_weight="1"
-            android:paddingHorizontal="10sp"
-            android:paddingVertical="10sp" />
-
-        <ImageButton
-            android:id="@+id/ib_editphase_remove_color"
+            android:id="@+id/tv_editphase_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_baseline_remove_circle_24"
-            android:backgroundTint="?attr/colorPrimary"
-            app:tint="?attr/colorOnPrimary"
-            />
-    </LinearLayout>
+            android:text="@string/from"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/ll_editphase_colorP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/ll_editphase_color"
-        tools:layout_editor_absoluteX="16sp">
+        <EditText
+            android:id="@+id/edittext_editphase_from"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_editphase_from"
+            android:importantForAutofill="no" />
 
         <TextView
-            android:id="@+id/tv_editphase_colorP"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10sp"
-            android:layout_weight="1"
-            android:paddingVertical="10sp"
-            android:text="Color future" />
-
-        <TextView
-            android:id="@+id/tv_editphase_colorP_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10sp"
-            android:layout_weight="1"
-            android:paddingHorizontal="10sp"
-            android:paddingVertical="10sp" />
-
-        <ImageButton
-            android:id="@+id/ib_editphase_remove_colorP"
+            android:id="@+id/tv_editphase_to"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_baseline_remove_circle_24"
-            android:backgroundTint="?attr/colorPrimary"
-            app:tint="?attr/colorOnPrimary"
-            />
-    </LinearLayout>
+            android:text="@string/to"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edittext_editphase_from" />
 
-    <Button
-        android:id="@+id/btn_editphase_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_editphase_colorP" />
+        <EditText
+            android:id="@+id/editText_editphase_to"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_editphase_to"
+            android:importantForAutofill="no" />
 
-    <Button
-        android:id="@+id/btn_editphase_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_editphase_cancel" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_editphase_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_editphase_to" />
+
+        <EditText
+            android:id="@+id/editText_editphase_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_editphase_description" />
+
+        <LinearLayout
+            android:id="@+id/ll_editphase_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/editText_editphase_description"
+            tools:layout_editor_absoluteX="16sp">
+
+            <TextView
+                android:id="@+id/tv_editphase_color"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10sp"
+                android:layout_weight="1"
+                android:paddingVertical="10sp"
+                android:text="@string/color_current" />
+
+            <TextView
+                android:id="@+id/tv_editphase_color_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:layout_weight="1"
+                android:paddingHorizontal="10sp"
+                android:paddingVertical="10sp" />
+
+            <ImageButton
+                android:id="@+id/ib_editphase_remove_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_remove_circle_24"
+                android:backgroundTint="?attr/colorPrimary"
+                app:tint="?attr/colorOnPrimary"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_editphase_colorP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/ll_editphase_color"
+            tools:layout_editor_absoluteX="16sp">
+
+            <TextView
+                android:id="@+id/tv_editphase_colorP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10sp"
+                android:layout_weight="1"
+                android:paddingVertical="10sp"
+                android:text="@string/color_future" />
+
+            <TextView
+                android:id="@+id/tv_editphase_colorP_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:layout_weight="1"
+                android:paddingHorizontal="10sp"
+                android:paddingVertical="10sp" />
+
+            <ImageButton
+                android:id="@+id/ib_editphase_remove_colorP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_remove_circle_24"
+                android:backgroundTint="?attr/colorPrimary"
+                app:tint="?attr/colorOnPrimary"
+                android:contentDescription="@string/remove_color" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_editphase_colorP"
+            tools:layout_editor_absoluteX="83dp">
+
+            <CheckBox
+                android:id="@+id/checkBox_editphase_markwholephase"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/mark_whole_phase" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_editphase_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+        <Button
+            android:id="@+id/btn_editphase_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

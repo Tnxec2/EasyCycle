@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,7 +48,7 @@ class StatisticFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true)
 
         _binding = FragmentStatisticBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -121,15 +120,15 @@ class StatisticFragment : Fragment() {
     }
 
     private fun openImportInfoAlert() {
-        val alertDialogBuilder = AlertDialog.Builder(requireContext());
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
         alertDialogBuilder.setTitle(resources.getString(R.string.import_statistic))
-        alertDialogBuilder.setMessage(resources.getString(R.string.import_description));
+        alertDialogBuilder.setMessage(resources.getString(R.string.import_description))
         alertDialogBuilder.setPositiveButton(resources.getString(R.string.ok),
             DialogInterface.OnClickListener { _, _ -> openFilePicker() })
         alertDialogBuilder.setNegativeButton(resources.getString((R.string.cancel)),
             DialogInterface.OnClickListener { _, _ -> {  } })
-        val alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -152,7 +151,7 @@ class StatisticFragment : Fragment() {
                 var line: String? = ""
                 while (true) {
                     try {
-                        if ( (r.readLine().also { line = it }) == null) break;
+                        if ( (r.readLine().also { line = it }) == null) break
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }

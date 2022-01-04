@@ -17,8 +17,6 @@ import com.kontranik.easycycle.models.CDay
 import java.text.SimpleDateFormat
 import java.util.*
 
-val sdf = SimpleDateFormat("dd. MMM yyyy", Locale.getDefault())
-
 class HomeListAdapter internal constructor(context: Context?, private val cDays: List<CDay>) :
     RecyclerView.Adapter<HomeListAdapter.ViewHolder>() {
 

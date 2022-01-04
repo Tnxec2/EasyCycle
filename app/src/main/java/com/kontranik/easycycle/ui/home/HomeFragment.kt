@@ -3,33 +3,25 @@ package com.kontranik.easycycle.ui.home
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.kontranik.easycycle.databinding.FragmentInfoBinding
-
 import androidx.recyclerview.widget.RecyclerView
+import com.kontranik.easycycle.MainActivity
 import com.kontranik.easycycle.R
 import com.kontranik.easycycle.constants.DefaultSettings
+import com.kontranik.easycycle.database.DatabaseService
+import com.kontranik.easycycle.databinding.FragmentInfoBinding
 import com.kontranik.easycycle.helper.PhasesHelper
 import com.kontranik.easycycle.models.CDay
 import com.kontranik.easycycle.models.LastCycle
 import com.kontranik.easycycle.models.Settings
 import com.kontranik.easycycle.storage.SettingsService
-
 import com.kontranik.easycycle.ui.settings.SettingsFragment
 import java.text.SimpleDateFormat
 import java.util.*
-
-import com.kontranik.easycycle.MainActivity
-import com.kontranik.easycycle.database.DatabaseService
-
-
-
-
 
 
 class HomeFragment : Fragment(), SettingsFragment.SettingsListener {
@@ -45,7 +37,7 @@ class HomeFragment : Fragment(), SettingsFragment.SettingsListener {
     private var settings: Settings = DefaultSettings.settings
 
     lateinit var recyclerView: RecyclerView
-    lateinit var noDataLinearLayout: LinearLayout
+    lateinit var noDataLinearLayout: ScrollView
     lateinit var cycleStartTextView: TextView
     lateinit var cycleLengthTextView: TextView
     lateinit var btnSave: Button
@@ -75,7 +67,7 @@ class HomeFragment : Fragment(), SettingsFragment.SettingsListener {
         val adapter = HomeListAdapter(context, cDays)
         recyclerView.adapter = adapter
 
-        noDataLinearLayout = binding.llNoData
+        noDataLinearLayout = binding.scrollViewNoData
         noDataLinearLayout.visibility = View.GONE
 
         cycleStartTextView = binding.tvHomeNodateStartdate

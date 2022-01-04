@@ -56,4 +56,15 @@ Klicken Sie OK um CSV-Datei auszuwählen.
     <string name="set">Setzen</string>
     <string name="no_date_set_date_placeholder">Datum nicht gesetzt</string>
     <string name="no_length_set_placeholder">Länge nicht gesetzt</string>
+    <string name="mark_whole_phase">im Kalendar gesamte Phase markieren</string>
+    <string name="mark_only_phase_start">im Kalendar nur Phasenstart markieren</string>
+    <string name="set_next_cycle_start">Anfang von nächsten Zyklus setzen</string>
+    <string name="color_current">Farbe aktulle Zyklus</string>
+    <string name="color_future">Farbe Zyklen in Zukunft</string>
+    <string name="from">Von</string>
+    <string name="to">Bis</string>
+    <string name="description">Beschreibung</string>
+    <string name="remove_color">Farbe entfernen</string>
+    <string name="edit_average_cycle_length">Durchschnittliche Zykluslänge eingeben</string>
+    <string name="show_on_start">Anzeige beim Programmstart</string>
 </resources>

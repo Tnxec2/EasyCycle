@@ -1,34 +1,21 @@
 package com.kontranik.easycycle.ui.phases.editphase
 
+
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import com.kontranik.easycycle.MainActivity
+import com.kontranik.easycycle.R
 import com.kontranik.easycycle.databinding.FragmentEditPhaseBinding
 import com.kontranik.easycycle.models.Phase
 import com.kontranik.easycycle.storage.SettingsService
-import com.skydoves.colorpickerview.ActionMode
-import com.skydoves.colorpickerview.ColorPickerView
-import android.content.DialogInterface
-import com.kontranik.easycycle.MainActivity
-import com.kontranik.easycycle.R
-
-
-import com.skydoves.colorpickerview.ColorEnvelope
-
-import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
-
 import com.skydoves.colorpickerview.ColorPickerDialog
-
-
-
-
-
-
-
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,6 +33,7 @@ class EditPhaseFragment : Fragment() {
     private lateinit var editFrom: EditText
     private lateinit var editTo: EditText
     private lateinit var editDescription: EditText
+    private lateinit var checkBoxMarkWholePhase: CheckBox
     private var color: String? = null
     private var colorP: String? = null
 
@@ -106,6 +94,10 @@ class EditPhaseFragment : Fragment() {
             colorP = null
             colorPTextView.setBackgroundColor(Color.TRANSPARENT)
         }
+
+        checkBoxMarkWholePhase = binding.checkBoxEditphaseMarkwholephase
+        checkBoxMarkWholePhase.isChecked = phase?.markwholephase == true
+
         val cancelButton = binding.btnEditphaseCancel
         cancelButton.setOnClickListener {
             parentFragmentManager.popBackStack()
@@ -148,7 +140,7 @@ class EditPhaseFragment : Fragment() {
                 desc = editDescription.text.toString(),
                 color = color,
                 colorP = colorP,
-                markwholephase = phase!!.markwholephase
+                markwholephase = checkBoxMarkWholePhase.isChecked
         ))
     }
 

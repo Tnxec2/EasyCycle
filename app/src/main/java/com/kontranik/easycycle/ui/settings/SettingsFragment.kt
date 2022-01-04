@@ -2,26 +2,18 @@ package com.kontranik.easycycle.ui.settings
 
 import android.os.Bundle
 import android.util.Log
-
-import android.view.ViewGroup
-
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.EditText
-
 import androidx.fragment.app.Fragment
+import com.kontranik.easycycle.MainActivity
+import com.kontranik.easycycle.R
 import com.kontranik.easycycle.constants.DefaultSettings
 import com.kontranik.easycycle.databinding.FragmentSettingsBinding
 import com.kontranik.easycycle.models.Settings
 import com.kontranik.easycycle.storage.SettingsService
-import com.kontranik.easycycle.MainActivity
-import com.kontranik.easycycle.R
-import android.widget.AdapterView
-
-import android.widget.ArrayAdapter
-
-
-
 
 
 class SettingsFragment : Fragment() {
