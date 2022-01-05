@@ -10,6 +10,9 @@
     <attr name="colorOnMainBackground" format="reference" />
     <attr name="colorOnCardBackground" format="reference" />
 
+    <attr name="toolbar_tint" format="reference" />
+    <attr name="button_tint" format="reference" />
+
     <declare-styleable name="AppWidgetAttrs">
         <attr name="appWidgetPadding" format="dimension" />
         <attr name="appWidgetInnerRadius" format="dimension" />

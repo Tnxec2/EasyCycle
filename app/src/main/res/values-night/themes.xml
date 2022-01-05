@@ -10,8 +10,14 @@
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
+
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
+
+        <item name="toolbarStyle">@style/myTheme.ActionBar</item>
+        <item name="actionOverflowButtonStyle">@style/ToolbarStyle.Overflow</item>
+        <item name="toolbarNavigationButtonStyle">@style/Toolbar.Button.Navigation.Tinted</item>
+
         <!-- Customize your theme here. -->
         <item name="colorOnSunday">@color/sunday_current</item>
         <item name="colorOnSundayInactiv">@color/sunday_notcurrent</item>
@@ -19,6 +25,26 @@
         <item name="colorOnDayInactiv">@color/day_notcurrent_dark</item>
         <item name="colorOnMainBackground">@color/backgroundDark</item>
         <item name="colorOnCardBackground">@color/background_infocard_dark</item>
+
+        <item name="toolbar_tint">@color/toolbar_tint_dark</item>
+        <item name="button_tint">@color/button_tint_dark</item>
+    </style>
+
+    <style name="myTheme.ActionBar" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/black</item>
+        <item name="background">@color/black</item>
+
+        <item name="titleTextColor">@color/white</item>
+        <item name="android:actionMenuTextColor">@color/white</item>
+    </style>
+
+    <style name="ToolbarStyle.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <!-- For toolbar menu -->
+        <item name="android:tint">@color/toolbar_tint_dark</item>
+    </style>
+
+    <style name="Toolbar.Button.Navigation.Tinted" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <!-- For the hamburger menu, back button, etc -->
         <item name="tint">@color/toolbar_tint_dark</item>
     </style>
 </resources>

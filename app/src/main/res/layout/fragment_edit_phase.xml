@@ -100,7 +100,7 @@
                 android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_remove_circle_24"
                 android:backgroundTint="?attr/colorPrimary"
-                app:tint="?attr/colorOnPrimary"
+                app:tint="?attr/button_tint"
                 />
         </LinearLayout>
 
@@ -136,7 +136,7 @@
                 android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_remove_circle_24"
                 android:backgroundTint="?attr/colorPrimary"
-                app:tint="?attr/colorOnPrimary"
+                app:tint="?attr/button_tint"
                 android:contentDescription="@string/remove_color" />
 
         </LinearLayout>
@@ -162,8 +162,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cancel"
+            android:textColor="?attr/button_tint"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            />
 
         <Button
             android:id="@+id/btn_editphase_save"
@@ -171,6 +173,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/save"
+            android:textColor="?attr/button_tint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
     </androidx.constraintlayout.widget.ConstraintLayout>

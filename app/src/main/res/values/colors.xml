@@ -9,17 +9,20 @@
     <color name="white">#FFFFFFFF</color>
     <color name="day_current">#FF000000</color>
     <color name="day_notcurrent">#818181</color>
-    <color name="day_current_dark">#C4C4C4</color>
+    <color name="day_current_dark">#FFFFFFFF</color>
     <color name="day_notcurrent_dark">#818181</color>
 
     <color name="sunday_current">#FF0000</color>
     <color name="sunday_notcurrent">#FF9696</color>
     <color name="background_infocard">#FFFFFFFF</color>
     <color name="background_infocard_dark">#ff000000</color>
-    <color name="toolbar_tint">#FFFFFFFF</color>
-    <color name="toolbar_tint_dark">#FF000000</color>
+    <color name="toolbar_tint">#FF3700B3</color>
+    <color name="toolbar_tint_dark">#FFBB86FC</color>
     <color name="tint">#FF3700B3</color>
-    <color name="background">#DADADA</color>
+    <color name="tint_dark">#FFBB86FC</color>
+    <color name="button_tint">#FFFFFFFF</color>
+    <color name="button_tint_dark">#ff000000</color>
+    <color name="background">#e9ecf1</color>
     <color name="backgroundDark">#3C3D3B</color>
     <color name="light_blue_50">#FFE1F5FE</color>
     <color name="light_blue_200">#FF81D4FA</color>

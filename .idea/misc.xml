@@ -7,7 +7,9 @@
         <entry key="../../Android/Sdk/platforms/android-32/data/res/drawable/ratingbar_indicator_material.xml" value="0.2359375" />
         <entry key="app/src/main/res/drawable-v21/app_widget_background.xml" value="0.2359375" />
         <entry key="app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.38125" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26927083333333335" />
         <entry key="app/src/main/res/drawable/big_rounded_corners.xml" value="0.2203125" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_circle_24_button.xml" value="0.38125" />
         <entry key="app/src/main/res/drawable/ic_baseline_autorenew_24.xml" value="0.2203125" />
         <entry key="app/src/main/res/drawable/ic_baseline_bar_chart_24.xml" value="0.2203125" />
         <entry key="app/src/main/res/drawable/ic_baseline_calendar_black.xml" value="0.2359375" />
@@ -15,11 +17,18 @@
         <entry key="app/src/main/res/drawable/ic_baseline_cancel_24.xml" value="0.2359375" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.2359375" />
         <entry key="app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.2203125" />
+        <entry key="app/src/main/res/drawable/ic_baseline_filter_center_focus_24.xml" value="0.26927083333333335" />
         <entry key="app/src/main/res/drawable/ic_baseline_info_24.xml" value="0.2359375" />
+        <entry key="app/src/main/res/drawable/ic_baseline_input_24.xml" value="0.26927083333333335" />
+        <entry key="app/src/main/res/drawable/ic_baseline_remove_circle_24.xml" value="0.26927083333333335" />
+        <entry key="app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.26927083333333335" />
+        <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.26927083333333335" />
         <entry key="app/src/main/res/drawable/ic_baseline_settings_backup_restore_24.xml" value="0.2359375" />
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2203125" />
         <entry key="app/src/main/res/drawable/rounded_corners.xml" value="0.2203125" />
         <entry key="app/src/main/res/drawable/rounded_corners_with_border.xml" value="0.2203125" />
+        <entry key="app/src/main/res/layout-land/fragment_calendar.xml" value="0.2734375" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.3651041666666667" />
         <entry key="app/src/main/res/layout/card_phase.xml" value="0.5" />
         <entry key="app/src/main/res/layout/day_info_widget.xml" value="0.3651041666666667" />
@@ -37,6 +46,7 @@
         <entry key="app/src/main/res/layout/numberpicker_dialog.xml" value="0.21979166666666666" />
         <entry key="app/src/main/res/layout/statisticcard.xml" value="0.3651041666666667" />
         <entry key="app/src/main/res/layout/statisticcard_item.xml" value="0.21979166666666666" />
+        <entry key="app/src/main/res/menu-v26/phases_toolbar_menu.xml" value="0.3651041666666667" />
         <entry key="app/src/main/res/menu/home_toolbar_menu.xml" value="0.3651041666666667" />
         <entry key="app/src/main/res/menu/phases_toolbar_menu.xml" value="0.21979166666666666" />
         <entry key="app/src/main/res/menu/statistic_toolbar_menu.xml" value="0.3651041666666667" />
