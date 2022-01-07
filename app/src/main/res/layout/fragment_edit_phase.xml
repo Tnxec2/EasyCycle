@@ -91,7 +91,9 @@
                 android:layout_margin="10sp"
                 android:layout_weight="1"
                 android:paddingHorizontal="10sp"
-                android:paddingVertical="10sp" />
+                android:paddingVertical="10sp"
+                android:background="@drawable/border_for_colorbox"
+                />
 
             <ImageButton
                 android:id="@+id/ib_editphase_remove_color"
@@ -102,43 +104,59 @@
                 android:backgroundTint="?attr/colorPrimary"
                 app:tint="?attr/button_tint"
                 />
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_editphase_colorP"
+            android:id="@+id/ll_editphase_colorPrediction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@+id/ll_editphase_color"
             tools:layout_editor_absoluteX="16sp">
 
-            <TextView
-                android:id="@+id/tv_editphase_colorP"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10sp"
+            <CheckBox
+                android:id="@+id/checkBox_editphase_differentcolorprognose"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:paddingVertical="10sp"
-                android:text="@string/color_future" />
+                android:text="@string/different_color_for_prediction" />
 
-            <TextView
-                android:id="@+id/tv_editphase_colorP_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                android:layout_weight="1"
-                android:paddingHorizontal="10sp"
-                android:paddingVertical="10sp" />
+            <LinearLayout
+                android:id="@+id/ll_editphase_colorP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
-            <ImageButton
-                android:id="@+id/ib_editphase_remove_colorP"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_baseline_remove_circle_24"
-                android:backgroundTint="?attr/colorPrimary"
-                app:tint="?attr/button_tint"
-                android:contentDescription="@string/remove_color" />
+                <TextView
+                    android:id="@+id/tv_editphase_colorP"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10sp"
+                    android:layout_weight="1"
+                    android:paddingVertical="10sp"
+                    android:text="@string/color_prediction" />
 
+                <TextView
+                    android:id="@+id/tv_editphase_colorP_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8sp"
+                    android:layout_weight="1"
+                    android:padding="8sp"
+                    android:background="@drawable/border_for_colorbox"
+                    />
+
+                <ImageButton
+                    android:id="@+id/ib_editphase_remove_colorP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="?attr/colorPrimary"
+                    android:contentDescription="@string/remove_color"
+                    android:src="@drawable/ic_baseline_remove_circle_24"
+                    app:tint="?attr/button_tint"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -146,7 +164,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/ll_editphase_colorP"
+            app:layout_constraintTop_toBottomOf="@+id/ll_editphase_colorPrediction"
             tools:layout_editor_absoluteX="83dp">
 
             <CheckBox

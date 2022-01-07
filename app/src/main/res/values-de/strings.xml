@@ -39,7 +39,8 @@ Klicken Sie OK um CSV-Datei auszuwählen.
     <string name="edit_phase">Phase bearbeiten</string>
     <string name="add_new_phase">Neue Phase anlegen</string>
     <string name="phase_description_placeholder">Beschreibung von der Phase</string>
-    <string name="no_statistic_data"><br>Keine Daten vorhanden.\nEntweder geben Sie im \"Kalender\" Anfangsdatum von dem letzten Zyklus ein oder importieren Sie CSV-Daten über Import-Knopf</br></string>
+    <string name="no_statistic_data">
+        <br>Keine Daten vorhanden.\nEntweder geben Sie im \"Kalender\" Anfangsdatum von dem letzten Zyklus ein oder importieren Sie CSV-Daten über Import-Knopf</br></string>
     <string name="load_predefined_phases">Vordefinirte Phasen laden</string>
     <string name="no_custom_phases_set"><br>keine benutzerdefinierte Phasen eingegeben.\nLaden Sie vordefenierte Phasen oder geben Sie eigene neue Phasen ein.</br></string>
     <string name="are_you_sure_to_load_predefined_phases">Sind Sie sicher, dass Sie vordefenierte Phasen laden wollen? Alle Ihre Änderungen gehen verloren.</string>
@@ -59,12 +60,14 @@ Klicken Sie OK um CSV-Datei auszuwählen.
     <string name="mark_whole_phase">im Kalendar gesamte Phase markieren</string>
     <string name="mark_only_phase_start">im Kalendar nur Phasenstart markieren</string>
     <string name="set_next_cycle_start">Anfang von nächsten Zyklus setzen</string>
-    <string name="color_current">Farbe aktulle Zyklus</string>
-    <string name="color_future">Farbe Zyklen in Zukunft</string>
+    <string name="color_current">Farbe aktuelle Zyklus</string>
+    <string name="color_prediction">Farbe für Prognose</string>
     <string name="from">Von</string>
     <string name="to">Bis</string>
     <string name="description">Beschreibung</string>
     <string name="remove_color">Farbe entfernen</string>
     <string name="edit_average_cycle_length">Durchschnittliche Zykluslänge eingeben</string>
     <string name="show_on_start">Anzeige beim Programmstart</string>
+    <string name="different_color_for_prediction">für Prognose andere Farbe</string>
+    <string name="on_click_colorbox">Um zu Farbe zu ändern, klicken Sie auf Knopf "Bearbeiten"</string>
 </resources>

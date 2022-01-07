@@ -50,11 +50,13 @@
     <string name="mark_only_phase_start">mark only start of phase in calendar</string>
     <string name="set_next_cycle_start">Set start of next cycle</string>
     <string name="color_current">Color current cycle</string>
-    <string name="color_future">Color cycles in future</string>
+    <string name="color_prediction">Color for prediction</string>
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="description">Description</string>
     <string name="remove_color">remove color</string>
     <string name="edit_average_cycle_length">Edit average cycle length</string>
     <string name="show_on_start">Show on start</string>
+    <string name="different_color_for_prediction">different color for prediction</string>
+    <string name="on_click_colorbox">To change color click on edit button</string>
 </resources>

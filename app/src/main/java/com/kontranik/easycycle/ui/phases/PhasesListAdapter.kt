@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
@@ -49,12 +50,16 @@ class PhasesListAdapter internal constructor(
             holder.colorView.setBackgroundColor(Color.parseColor(phase.color))
         } else {
             holder.colorView.setBackgroundColor(Color.TRANSPARENT)
+            holder.colorView.setBackgroundResource(R.drawable.border_for_colorbox)
         }
+
         if ( phase.colorP != null) {
             holder.colorPView.setBackgroundColor(Color.parseColor(phase.colorP))
         }else {
             holder.colorPView.setBackgroundColor(Color.TRANSPARENT)
+            holder.colorPView.setBackgroundResource(R.drawable.border_for_colorbox)
         }
+
         if (phase.color != null || phase.colorP != null) {
             if (phase.markwholephase == true)  {
                 holder.markWholePhaseView.text = context.getString(R.string.mark_whole_phase)
@@ -63,6 +68,14 @@ class PhasesListAdapter internal constructor(
             }
         } else {
             holder.markWholePhaseView.visibility = View.GONE
+        }
+        
+        holder.colorView.setOnClickListener { 
+            Toast.makeText(context, context.getString(R.string.on_click_colorbox), Toast.LENGTH_SHORT).show()
+        }
+
+        holder.colorPView.setOnClickListener {
+            Toast.makeText(context, context.getString(R.string.on_click_colorbox), Toast.LENGTH_SHORT).show()
         }
 
         holder.deleteImageButton.setOnClickListener {

@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.38125" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26927083333333335" />
         <entry key="app/src/main/res/drawable/big_rounded_corners.xml" value="0.2203125" />
+        <entry key="app/src/main/res/drawable/border_for_colorbox.xml" value="0.38125" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_circle_24_button.xml" value="0.38125" />
         <entry key="app/src/main/res/drawable/ic_baseline_autorenew_24.xml" value="0.2203125" />
         <entry key="app/src/main/res/drawable/ic_baseline_bar_chart_24.xml" value="0.2203125" />

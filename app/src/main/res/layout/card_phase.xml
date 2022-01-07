@@ -80,6 +80,7 @@
                 android:layout_width="0dp"
                 android:layout_height="20sp"
                 android:layout_weight="1"
+                android:background="@drawable/border_for_colorbox"
             />
         </LinearLayout>
         <LinearLayout
@@ -91,13 +92,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/color_future" />
+                android:text="@string/color_prediction" />
             <TextView
                 android:id="@+id/tv_phase_card_colorP"
                 android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="20sp"
                 android:layout_weight="1"
+                android:background="@drawable/border_for_colorbox"
             />
         </LinearLayout>
         <TextView

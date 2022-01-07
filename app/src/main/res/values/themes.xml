@@ -4,13 +4,13 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <item name="colorOnBackground">@color/black</item>
+        <item name="colorOnPrimary">@android:color/darker_gray</item>
+        <item name="colorOnBackground">@android:color/darker_gray</item>
 
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@android:color/darker_gray</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
@@ -38,12 +38,14 @@
 
         <item name="titleTextColor">@color/black</item>
         <item name="android:actionMenuTextColor">@color/black</item>
+
     </style>
 
     <style name="ToolbarStyle.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
         <!-- For toolbar menu -->
         <item name="android:tint">@color/toolbar_tint</item>
     </style>
+
 
     <style name="Toolbar.Button.Navigation.Tinted" parent="Widget.AppCompat.Toolbar.Button.Navigation">
         <!-- For the hamburger menu, back button, etc -->

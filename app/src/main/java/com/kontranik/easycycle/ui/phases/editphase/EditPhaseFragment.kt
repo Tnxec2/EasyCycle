@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.kontranik.easycycle.MainActivity
 import com.kontranik.easycycle.R
@@ -34,8 +36,12 @@ class EditPhaseFragment : Fragment() {
     private lateinit var editTo: EditText
     private lateinit var editDescription: EditText
     private lateinit var checkBoxMarkWholePhase: CheckBox
+    private lateinit var checkBoxDifferentColorPrediction: CheckBox
+    private lateinit var llColorPrediction: LinearLayout
     private var color: String? = null
     private var colorP: String? = null
+
+    private var differentColorForPrediction = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,35 +71,56 @@ class EditPhaseFragment : Fragment() {
         if (phase!!.desc != null) editDescription.setText(phase!!.desc.toString())
 
         val colorTextView = binding.tvEditphaseColorButton
-        if ( phase?.color != null)
-            colorTextView.setBackgroundColor(Color.parseColor(phase?.color))
+        if ( phase?.color != null) {
+            changeColorOnView(colorTextView, Color.parseColor(phase?.color))
+        } else {
+            changeColorOnView(colorTextView)
+        }
         color = phase?.color
         colorTextView.setOnClickListener {
             openColorPicker(color, ColorEnvelopeListener { envelope, fromUser ->
                 color = "#" + envelope.hexCode
-                colorTextView.setBackgroundColor(envelope.color)
+                changeColorOnView(colorTextView, envelope.color)
              })
         }
         val deleteColorButton = binding.ibEditphaseRemoveColor
         deleteColorButton.setOnClickListener {
             color = null
-            colorTextView.setBackgroundColor(Color.TRANSPARENT)
+            changeColorOnView(colorTextView)
         }
+
+        llColorPrediction = binding.llEditphaseColorP
+
+        differentColorForPrediction = phase?.colorP != phase?.color
+
+        checkBoxDifferentColorPrediction = binding.checkBoxEditphaseDifferentcolorprognose
+        checkBoxDifferentColorPrediction.isChecked = differentColorForPrediction
+        checkBoxDifferentColorPrediction.setOnCheckedChangeListener { compoundButton, b ->
+            differentColorForPrediction = compoundButton.isChecked
+            if (!differentColorForPrediction) llColorPrediction.visibility = View.GONE
+            else llColorPrediction.visibility = View.VISIBLE
+        }
+
         val colorPTextView = binding.tvEditphaseColorPButton
-        if ( phase?.colorP != null)
-            colorPTextView.setBackgroundColor(Color.parseColor(phase?.colorP))
+        if ( phase?.colorP != null) {
+            changeColorOnView(colorPTextView, Color.parseColor(phase?.colorP))
+        } else {
+            changeColorOnView(colorPTextView)
+        }
         colorP = phase?.colorP
         colorPTextView.setOnClickListener {
             openColorPicker(colorP, ColorEnvelopeListener { envelope, fromUser ->
                 colorP = "#" + envelope.hexCode
-                colorPTextView.setBackgroundColor(envelope.color)
+                changeColorOnView(colorPTextView, envelope.color)
             })
         }
         val deleteColorPButton = binding.ibEditphaseRemoveColorP
         deleteColorPButton.setOnClickListener {
             colorP = null
-            colorPTextView.setBackgroundColor(Color.TRANSPARENT)
+            changeColorOnView(colorPTextView)
         }
+
+        if (!differentColorForPrediction) llColorPrediction.visibility = View.GONE
 
         checkBoxMarkWholePhase = binding.checkBoxEditphaseMarkwholephase
         checkBoxMarkWholePhase.isChecked = phase?.markwholephase == true
@@ -112,7 +139,14 @@ class EditPhaseFragment : Fragment() {
         return root
     }
 
-
+    private fun changeColorOnView(cTextView: TextView, color: Int? = null) {
+        if (color != null) {
+            cTextView.setBackgroundColor(color)
+        } else {
+            cTextView.setBackgroundColor(Color.TRANSPARENT)
+            cTextView.setBackgroundResource(R.drawable.border_for_colorbox)
+        }
+    }
 
     private fun openColorPicker(hexColorString: String?, listener: ColorEnvelopeListener) {
         val picker = ColorPickerDialog.Builder(requireContext())
@@ -139,7 +173,7 @@ class EditPhaseFragment : Fragment() {
                 to = editTo.text.toString().toLong(),
                 desc = editDescription.text.toString(),
                 color = color,
-                colorP = colorP,
+                colorP = if (checkBoxDifferentColorPrediction.isChecked) colorP else color,
                 markwholephase = checkBoxMarkWholePhase.isChecked
         ))
     }
