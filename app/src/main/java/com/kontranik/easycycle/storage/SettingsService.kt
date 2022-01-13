@@ -46,7 +46,7 @@ class SettingsService {
             return gson.fromJson(settings, Settings::class.java)
         }
 
-        fun saveCustomPhase(context: Context, phase: Phase) {
+        fun saveCustomPhase(context: Context, phase: Phase): MutableList<Phase> {
             var phases = loadCustomPhases(context).toMutableList()
             var updated = false
             for( i in phases.indices) {
@@ -64,6 +64,7 @@ class SettingsService {
             }
             if (!updated) phases.add(phase)
             saveCustomPhases(context, phases)
+            return phases
         }
 
         fun saveCustomPhases(context: Context, phases: List<Phase>) {

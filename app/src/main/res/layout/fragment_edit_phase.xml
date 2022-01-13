@@ -10,16 +10,36 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.phases.editphase.EditPhaseFragment"
+        tools:context=".ui.phases.editphase.EditPhaseDialogFragment"
         android:padding="16sp">
+
+        <TextView
+            android:id="@+id/tv_editphase_title"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:paddingVertical="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_phase"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider_editphase_title"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@+id/tv_editphase_title"
+            tools:layout_editor_absoluteX="16dp" />
 
         <TextView
             android:id="@+id/tv_editphase_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/from"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/divider_editphase_title" />
 
         <EditText
             android:id="@+id/edittext_editphase_from"
@@ -64,7 +84,7 @@
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
-            android:lines="5"
+            android:lines="3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_editphase_description" />
 
@@ -181,9 +201,9 @@
             android:layout_height="wrap_content"
             android:text="@string/cancel"
             android:textColor="?attr/button_tint"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <Button
             android:id="@+id/btn_editphase_save"
@@ -193,6 +213,6 @@
             android:text="@string/save"
             android:textColor="?attr/button_tint"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            app:layout_constraintTop_toTopOf="@+id/btn_editphase_cancel" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

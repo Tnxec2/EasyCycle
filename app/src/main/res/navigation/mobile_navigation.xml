@@ -28,4 +28,8 @@
         android:name="com.kontranik.easycycle.ui.phases.PhasesFragment"
         android:label="@string/title_phases"
         tools:layout="@layout/fragment_phases" />
+    <fragment
+        android:id="@+id/editPhaseFragment"
+        android:name="com.kontranik.easycycle.ui.phases.editphase.EditPhaseDialogFragment"
+        android:label="EditPhaseFragment" />
 </navigation>

@@ -1,6 +1,7 @@
 package com.kontranik.easycycle.ui.phases.editphase
 
 
+import android.app.Dialog
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,12 +11,12 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import com.kontranik.easycycle.MainActivity
+import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
+import com.kontranik.easycycle.MainViewModel
 import com.kontranik.easycycle.R
 import com.kontranik.easycycle.databinding.FragmentEditPhaseBinding
 import com.kontranik.easycycle.models.Phase
-import com.kontranik.easycycle.storage.SettingsService
 import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 
@@ -23,8 +24,7 @@ import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PHASE = "phase"
 
-
-class EditPhaseFragment : Fragment() {
+class EditPhaseDialogFragment : DialogFragment() {
     private var phase: Phase? = null
 
     private var _binding: FragmentEditPhaseBinding? = null
@@ -32,16 +32,29 @@ class EditPhaseFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var shareModel: MainViewModel
+
     private lateinit var editFrom: EditText
     private lateinit var editTo: EditText
     private lateinit var editDescription: EditText
     private lateinit var checkBoxMarkWholePhase: CheckBox
     private lateinit var checkBoxDifferentColorPrediction: CheckBox
     private lateinit var llColorPrediction: LinearLayout
+
     private var color: String? = null
     private var colorP: String? = null
 
     private var differentColorForPrediction = false
+
+    override fun onStart() {
+        super.onStart()
+        val dialog: Dialog? = dialog
+        if (dialog != null) {
+            val width = ViewGroup.LayoutParams.MATCH_PARENT
+            val height = ViewGroup.LayoutParams.MATCH_PARENT
+            dialog.window!!.setLayout(width, height)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,12 +67,12 @@ class EditPhaseFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        (activity as MainActivity?)?.supportActionBar?.title = resources.getString(R.string.edit_phase)
+    ): View {
 
         _binding = FragmentEditPhaseBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        shareModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         editFrom = binding.edittextEditphaseFrom
         editFrom.setText(phase?.from.toString())
@@ -127,13 +140,13 @@ class EditPhaseFragment : Fragment() {
 
         val cancelButton = binding.btnEditphaseCancel
         cancelButton.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            dismiss()
         }
 
         val saveButton = binding.btnEditphaseSave
         saveButton.setOnClickListener {
             savePhase()
-            parentFragmentManager.popBackStack()
+            dismiss()
         }
 
         return root
@@ -166,7 +179,7 @@ class EditPhaseFragment : Fragment() {
     }
 
     private fun savePhase() {
-        SettingsService.saveCustomPhase( requireContext(),
+        shareModel.savePhase(
             Phase(
                 key = phase!!.key,
                 from = editFrom.text.toString().toLong(),
@@ -175,7 +188,8 @@ class EditPhaseFragment : Fragment() {
                 color = color,
                 colorP = if (checkBoxDifferentColorPrediction.isChecked) colorP else color,
                 markwholephase = checkBoxMarkWholePhase.isChecked
-        ))
+            )
+        )
     }
 
     override fun onDestroyView() {
@@ -194,7 +208,7 @@ class EditPhaseFragment : Fragment() {
 
         @JvmStatic
         fun newInstance(phase: Phase) =
-            EditPhaseFragment().apply {
+            EditPhaseDialogFragment().apply {
                 arguments = Bundle().apply {
                     putSerializable(ARG_PHASE, phase)
                 }

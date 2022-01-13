@@ -10,11 +10,10 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.kontranik.easycycle.R
 import com.kontranik.easycycle.models.Phase
-import com.kontranik.easycycle.ui.phases.editphase.EditPhaseFragment
+import com.kontranik.easycycle.ui.phases.editphase.EditPhaseDialogFragment
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,7 +23,7 @@ class PhasesListAdapter internal constructor(
     private val listener: PhasesListAdapterListener,
     private val context: Context?,
     private val fragmentManager: FragmentManager,
-    private val phases: MutableList<Phase>) :
+    private val phases: List<Phase>) :
     RecyclerView.Adapter<PhasesListAdapter.ViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
@@ -88,11 +87,8 @@ class PhasesListAdapter internal constructor(
     }
 
     private fun openEditPhaseFragment(item: Phase) {
-        val editPhaseFragment = EditPhaseFragment.newInstance(item)
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, editPhaseFragment, "PhasesList")
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        val editPhaseFragment = EditPhaseDialogFragment.newInstance(item)
+        editPhaseFragment.show(fragmentManager, "fragment_edit_phase")
     }
 
     override fun getItemCount(): Int {

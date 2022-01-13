@@ -4,48 +4,44 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.*
-import android.widget.*
+import android.widget.Button
+import android.widget.NumberPicker
+import android.widget.ScrollView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.kontranik.easycycle.MainActivity
+import com.kontranik.easycycle.MainViewModel
 import com.kontranik.easycycle.R
 import com.kontranik.easycycle.constants.DefaultSettings
-import com.kontranik.easycycle.database.DatabaseService
 import com.kontranik.easycycle.databinding.FragmentInfoBinding
-import com.kontranik.easycycle.helper.PhasesHelper
-import com.kontranik.easycycle.models.CDay
-import com.kontranik.easycycle.models.LastCycle
-import com.kontranik.easycycle.models.Settings
-import com.kontranik.easycycle.storage.SettingsService
-import com.kontranik.easycycle.ui.settings.SettingsFragment
+import com.kontranik.easycycle.ui.settings.SettingsDialogFragment
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class HomeFragment : Fragment(), SettingsFragment.SettingsListener {
+class HomeFragment : Fragment() {
 
     private var _binding: FragmentInfoBinding? = null
-
-    private val cDays: MutableList<CDay> = mutableListOf()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private var settings: Settings = DefaultSettings.settings
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var noDataLinearLayout: ScrollView
+    private lateinit var cycleStartTextView: TextView
+    private lateinit var cycleLengthTextView: TextView
+    private lateinit var btnSave: Button
 
-    lateinit var recyclerView: RecyclerView
-    lateinit var noDataLinearLayout: ScrollView
-    lateinit var cycleStartTextView: TextView
-    lateinit var cycleLengthTextView: TextView
-    lateinit var btnSave: Button
-
-    var cycleStartDate: Calendar? = null
-    var lastCycleLength = DefaultSettings.defaultCycleLength
+    private lateinit var sharedModel: MainViewModel
+    private lateinit var viewModel: HomeViewModel
 
     private val sdf = SimpleDateFormat("dd. MMM yyyy", Locale.getDefault())
+
+    private var daysOnHome = DefaultSettings.settings.daysOnHome
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,12 +56,27 @@ class HomeFragment : Fragment(), SettingsFragment.SettingsListener {
         _binding = FragmentInfoBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val tempSettings = SettingsService.loadSettings(requireContext())
-        if ( tempSettings != null) settings = tempSettings
+        sharedModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         recyclerView = binding.rvHomeInfoList
-        val adapter = HomeListAdapter(context, cDays)
-        recyclerView.adapter = adapter
+
+        sharedModel.settings.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            daysOnHome = it.daysOnHome
+            loadInfo()
+        })
+
+        viewModel.cDays.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            val adapter = HomeListAdapter(context, it)
+            recyclerView.adapter = adapter
+            if ( it.isEmpty()) {
+                noDataLinearLayout.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                noDataLinearLayout.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+        })
 
         noDataLinearLayout = binding.scrollViewNoData
         noDataLinearLayout.visibility = View.GONE
@@ -94,36 +105,24 @@ class HomeFragment : Fragment(), SettingsFragment.SettingsListener {
             openLengthPicker()
         }
         btnSave.setOnClickListener {
-            saveData()
+            viewModel.saveLastCycleStart()
+            loadInfo()
         }
 
-        setDate()
-        setLength()
+        viewModel.cycleStartDate.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            if ( it != null)
+                cycleStartTextView.text = sdf.format(it.time)
+            else
+                cycleStartTextView.text = getString(R.string.no_date_set_date_placeholder)
+        })
 
-        loadInfo()
+        setLength()
 
         return root
     }
 
-
     private fun loadInfo() {
-        val lastCycle = SettingsService.loadLastCycleStart(requireContext())
-        if ( lastCycle != null) {
-            val result = PhasesHelper.getDaysInfo(requireContext(), settings.daysOnHome, lastCycle)
-            cDays.clear()
-            recyclerView!!.adapter!!.notifyDataSetChanged()
-            if (result.isEmpty()) {
-                noDataLinearLayout.visibility = View.VISIBLE
-                recyclerView.visibility = View.GONE
-            } else {
-                noDataLinearLayout.visibility = View.GONE
-                recyclerView.visibility = View.VISIBLE
-                cDays.addAll(result)
-                recyclerView!!.adapter!!.notifyDataSetChanged()
-            }
-        } else {
-            noDataLinearLayout.visibility = View.VISIBLE
-        }
+        viewModel.loadCdays(daysOnHome)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -141,23 +140,15 @@ class HomeFragment : Fragment(), SettingsFragment.SettingsListener {
         }
     }
 
-    fun openSettingsFragment() {
-        val fragment2 = SettingsFragment()
+    private fun openSettingsFragment() {
+        val fragment2 = SettingsDialogFragment().newInstance()
         val fragmentManager: FragmentManager = parentFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, fragment2, "Home")
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        fragment2.show(fragmentManager, "fragment_settings")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onSettingsChanged(settings: Settings) {
-        this.settings = settings
-        loadInfo()
     }
 
     private fun openDatePicker() {
@@ -185,11 +176,11 @@ class HomeFragment : Fragment(), SettingsFragment.SettingsListener {
         val b2: Button = d.findViewById(R.id.button2) as Button
         val np = d.findViewById<NumberPicker> (R.id.numberPicker1)
         np.maxValue = 100
-        np.value = lastCycleLength
+        np.value = viewModel.getLastCycleLength()
         np.minValue = 0
         np.wrapSelectorWheel = true
         b1.setOnClickListener{
-            lastCycleLength = np.value
+            viewModel.setLastCycleLength(np.value)
             setLength()
             d.dismiss()
         }
@@ -201,36 +192,12 @@ class HomeFragment : Fragment(), SettingsFragment.SettingsListener {
 
     private var datePickerListener =
         DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-        if ( cycleStartDate == null)
-            cycleStartDate = Calendar.getInstance()
+            viewModel.setCycleStartDate(year, monthOfYear, dayOfMonth)
 
-        cycleStartDate!!.set(Calendar.YEAR, year)
-        cycleStartDate!!.set(Calendar.MONTH, monthOfYear)
-        cycleStartDate!!.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-
-        setDate()
         btnSave.isEnabled = true
     }
 
-    private fun saveData() {
-        if (cycleStartDate != null) {
-            val lastCycle =
-                LastCycle(cycleStart = cycleStartDate!!.time, lengthOfLastCycle = lastCycleLength)
-            SettingsService.saveLastCycleStart(lastCycle, requireContext())
-            val databaseService = DatabaseService(requireContext())
-            databaseService.add(lastCycle)
-            loadInfo()
-        }
-    }
-
-    private fun setDate() {
-        if ( cycleStartDate != null)
-            cycleStartTextView.text = sdf.format(cycleStartDate!!.time)
-        else
-            cycleStartTextView.text = getString(R.string.no_date_set_date_placeholder)
-    }
-
     private fun setLength() {
-        cycleLengthTextView.text = lastCycleLength.toString()
+        cycleLengthTextView.text = viewModel.getLastCycleLength().toString()
     }
 }

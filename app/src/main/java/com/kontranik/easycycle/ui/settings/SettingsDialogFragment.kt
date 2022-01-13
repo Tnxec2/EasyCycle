@@ -1,35 +1,30 @@
 package com.kontranik.easycycle.ui.settings
 
+import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
-import androidx.fragment.app.Fragment
-import com.kontranik.easycycle.MainActivity
+import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.kontranik.easycycle.MainViewModel
 import com.kontranik.easycycle.R
-import com.kontranik.easycycle.constants.DefaultSettings
 import com.kontranik.easycycle.databinding.FragmentSettingsBinding
 import com.kontranik.easycycle.models.Settings
-import com.kontranik.easycycle.storage.SettingsService
 
 
-class SettingsFragment : Fragment() {
-
-    private var listener: SettingsListener? = null
+class SettingsDialogFragment : DialogFragment() {
 
     private val showOnStartItemsIds = arrayListOf<Int>(
         R.id.navigation_info,
         R.id.navigation_calendar,
         R.id.navigation_statistic,
         R.id.navigation_phases)
-    private var showOnStartItemsTitle = arrayListOf<String>( )
 
-    interface SettingsListener {
-        fun onSettingsChanged(settings: Settings)
-    }
+    private var showOnStartItemsTitle = arrayListOf<String>( )
 
     private var _binding: FragmentSettingsBinding? = null
 
@@ -40,7 +35,23 @@ class SettingsFragment : Fragment() {
     private lateinit var textDaysOnHome: EditText
     private lateinit var textYearsOnStatistic: EditText
 
-    private var settings: Settings = DefaultSettings.settings
+    fun newInstance(): SettingsDialogFragment {
+        val frag = SettingsDialogFragment()
+        val args = Bundle()
+        //args.putString("title", title)
+        frag.arguments = args
+        return frag
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val dialog: Dialog? = dialog
+        if (dialog != null) {
+            val width = ViewGroup.LayoutParams.MATCH_PARENT
+            val height = ViewGroup.LayoutParams.MATCH_PARENT
+            dialog.window!!.setLayout(width, height)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,10 +59,10 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        (activity as MainActivity?)?.supportActionBar?.title = resources.getString(R.string.settings)
-
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        val sharedModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         showOnStartItemsTitle = arrayListOf<String>(
             getString(R.string.title_home),
@@ -60,23 +71,32 @@ class SettingsFragment : Fragment() {
             getString(R.string.title_phases)
         )
 
-        val tempSettings = SettingsService.loadSettings(requireContext())
-        if ( tempSettings != null) settings = tempSettings
-
         val cancelButton = binding.btnSettingsCancel
         cancelButton.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            dismiss()
         }
 
         val spinnerShowOnStart = binding.spinnerSettingsShowOnStart
         val aa =
-            ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, showOnStartItemsTitle)
+            ArrayAdapter<String>(
+                requireContext(),
+                android.R.layout.simple_spinner_item,
+                showOnStartItemsTitle)
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerShowOnStart.adapter = aa
-        var pos = 0
-        showOnStartItemsIds.forEachIndexed { index, item -> if (item == settings.showOnStart) pos = index }
-        spinnerShowOnStart.setSelection(pos)
-        Log.d("selection", pos.toString())
+
+        textDaysOnHome = binding.edittextSettingsDaysonhome
+        textYearsOnStatistic = binding.edittextSettingsYearsinstatistic
+
+        sharedModel.settings.observe(viewLifecycleOwner, Observer {
+            var pos = 0
+            showOnStartItemsIds.forEachIndexed { index, item ->
+                if (item == it.showOnStart) pos = index
+            }
+            spinnerShowOnStart.setSelection(pos)
+            textDaysOnHome.setText(it.daysOnHome.toString())
+            textYearsOnStatistic.setText(it.yearsOnStatistic.toString())
+        })
 
         val saveButton = binding.btnSettingsSave
         saveButton.setOnClickListener {
@@ -85,16 +105,9 @@ class SettingsFragment : Fragment() {
                 yearsOnStatistic = textYearsOnStatistic.text.toString().toInt(),
                 showOnStart = showOnStartItemsIds[spinnerShowOnStart.selectedItemPosition]
             )
-            SettingsService.saveSettings(newSettings, requireContext())
-            if ( listener != null) listener!!.onSettingsChanged(newSettings)
-            parentFragmentManager.popBackStack()
+            sharedModel.saveSettings(newSettings)
+            dismiss()
         }
-
-        textDaysOnHome = binding.edittextSettingsDaysonhome
-        textDaysOnHome.setText(settings.daysOnHome.toString())
-
-        textYearsOnStatistic = binding.edittextSettingsYearsinstatistic
-        textYearsOnStatistic.setText(settings.yearsOnStatistic.toString())
 
         return root
     }
