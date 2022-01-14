@@ -48,7 +48,11 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         viewModel.settings.observe(this, Observer {
-            navController.navigate(it.showOnStart)
+            try {
+                navController.navigate(it.showOnStart)
+            } catch (e: Exception) {
+
+            }
         })
     }
 }
