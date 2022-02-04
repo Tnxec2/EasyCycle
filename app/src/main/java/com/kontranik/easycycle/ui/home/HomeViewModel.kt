@@ -16,10 +16,10 @@ class HomeViewModel(val app: Application): AndroidViewModel(app) {
 
     val cycleStartDate = MutableLiveData<Calendar>()
 
+    private var daysOnHome = DefaultSettings.settings.daysOnHome
     private var lastCycleLength = DefaultSettings.defaultCycleLength
 
-    fun loadCdays(daysOnHome: Int) {
-        val lastCycle = SettingsService.loadLastCycleStart(app)
+    fun loadCycleDays(lastCycle: LastCycle?) {
         if ( lastCycle != null) {
             val result = PhasesHelper.getDaysInfo(
                 app,
@@ -49,16 +49,8 @@ class HomeViewModel(val app: Application): AndroidViewModel(app) {
         cycleStartDate.value!!.set(Calendar.DAY_OF_MONTH, dayOfMonth)
     }
 
-    fun saveLastCycleStart() {
-        if (cycleStartDate.value != null) {
-            val lastCycle =
-                LastCycle(
-                    cycleStart = cycleStartDate.value!!.time,
-                    lengthOfLastCycle = lastCycleLength
-                )
-            SettingsService.saveLastCycleStart(lastCycle, app)
-            val databaseService = DatabaseService(app)
-            databaseService.add(lastCycle)
-        }
+    fun setDaysOnHome(daysOnHome: Int) {
+        this.daysOnHome = daysOnHome
     }
+
 }

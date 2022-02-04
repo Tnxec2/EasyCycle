@@ -14,22 +14,6 @@ class SettingsService {
     companion object {
         private val gson = Gson()
 
-        fun saveLastCycleStart(lastCycle: LastCycle, context: Context) {
-            val sharedPreferences: SharedPreferences =
-                context.getSharedPreferences(preferenceFileName, 0)
-            val sharedPreferencesEditor = sharedPreferences.edit()
-            val serializedObject = gson.toJson(lastCycle)
-            sharedPreferencesEditor.putString(LAST_CYCLE_DATE, serializedObject)
-            sharedPreferencesEditor.apply()
-        }
-
-        fun loadLastCycleStart(context: Context): LastCycle? {
-            val sharedPreferences: SharedPreferences =
-                context.getSharedPreferences(preferenceFileName, 0)
-            val lastCycleString = sharedPreferences.getString(LAST_CYCLE_DATE, null)
-            return gson.fromJson(lastCycleString, LastCycle::class.java)
-        }
-
         fun saveSettings(settings: Settings, context: Context) {
             val sharedPreferences: SharedPreferences =
                 context.getSharedPreferences(preferenceFileName, 0)
@@ -107,7 +91,6 @@ class SettingsService {
         }
 
         private const val preferenceFileName = "EASYCYCLE_PREFS"
-        private const val LAST_CYCLE_DATE = "LAST_CYCLE_DATE"
         private const val APP_SETTINGS = "APP_SETTINGS"
         private const val CUSTOM_PHASES = "CUSTOM_PHASES"
     }

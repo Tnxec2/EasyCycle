@@ -8,6 +8,7 @@ import android.content.Intent
 import android.widget.RemoteViews
 import com.kontranik.easycycle.MainActivity
 import com.kontranik.easycycle.R
+import com.kontranik.easycycle.database.DatabaseService
 import com.kontranik.easycycle.helper.PhasesHelper
 import com.kontranik.easycycle.storage.SettingsService
 
@@ -49,7 +50,7 @@ class DayInfoWidget : AppWidgetProvider() {
         views.setOnClickPendingIntent(R.id.appwidget_widgetRoot,
             PendingIntent.getActivity(context, 0, Intent(context, MainActivity::class.java), PendingIntent.FLAG_MUTABLE))
 
-        val lastCycle = SettingsService.loadLastCycleStart(context)
+        val lastCycle = DatabaseService(context).getLastOne()
         if (lastCycle != null) {
             val result = PhasesHelper.getDaysInfo(context, 1, lastCycle)
             if (result.isEmpty()) {

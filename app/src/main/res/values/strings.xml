@@ -43,6 +43,7 @@
     <string name="save">Save</string>
     <string name="start_date_of_last_cycle">start date of last cycle</string>
     <string name="average_cycle_length">average cycle length</string>
+    <string name="average_cycle_length_statistic">Average cycle length of last 12 months: %1$d</string>
     <string name="set">Set</string>
     <string name="no_date_set_date_placeholder">no date set</string>
     <string name="no_length_set_placeholder">no length set</string>
@@ -59,4 +60,10 @@
     <string name="show_on_start">Show on start</string>
     <string name="different_color_for_prediction">different color for prediction</string>
     <string name="on_click_colorbox">To change color click on edit button</string>
+    <string name="help">Help</string>
+    <string name="close">Close</string>
+    <string name="help_statistic">
+        <br>You can remove a statistic item by touch it multiple times.
+        </br>
+    </string>
 </resources>

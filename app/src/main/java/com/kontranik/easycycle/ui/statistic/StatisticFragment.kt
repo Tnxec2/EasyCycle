@@ -21,15 +21,12 @@ class StatisticFragment : Fragment() {
 
     private var _binding: FragmentStatisticBinding? = null
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var llNoData: LinearLayout
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: StatisticFragmentViewModel
-    private lateinit var shareModel: MainViewModel
+    private lateinit var viewModel: MainViewModel
 
     private var yearsOnStatistic: Int = DefaultSettings.settings.yearsOnStatistic
 
@@ -43,39 +40,40 @@ class StatisticFragment : Fragment() {
         _binding = FragmentStatisticBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        viewModel = ViewModelProvider(requireActivity()).get(StatisticFragmentViewModel::class.java)
-        shareModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
-        llNoData = binding.llStatisticNodata
-        llNoData.visibility = View.GONE
+        binding.llStatisticNodata.visibility = View.GONE
 
-        recyclerView = binding.rvStatisticList
-        val adapter = StatisticListAdapter(context, viewModel.getListOfYears())
+        val adapter = StatisticListAdapter(context, viewModel.getListOfYearsStatistic(), viewModel)
         val layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = layoutManager
+        binding.rvStatisticList.adapter = adapter
+        binding.rvStatisticList.layoutManager = layoutManager
 
         val btnImportStatistic = binding.btnStatisticImportData
         btnImportStatistic.setOnClickListener { openImportInfoAlert() }
 
-        shareModel.settings.observe(viewLifecycleOwner, Observer {
+        viewModel.settings.observe(viewLifecycleOwner, Observer {
             yearsOnStatistic = it.yearsOnStatistic
             loadArchiv()
         })
-
+        viewModel.averageCycleLength.observe(viewLifecycleOwner, Observer {
+            binding.tvStatisticAverageCycleLength.text = resources.getString(R.string.average_cycle_length_statistic, it)
+        })
         return root
     }
 
     fun loadArchiv() {
-        viewModel.loadListOfYears(yearsOnStatistic)
-        if ( viewModel.getListOfYears().isEmpty() ) {
-            llNoData.visibility = View.VISIBLE
-            recyclerView.visibility = View.GONE
+        viewModel.loadListOfYearsStatistic(yearsOnStatistic)
+        if ( viewModel.getListOfYearsStatistic().isEmpty() ) {
+            binding.llStatisticNodata.visibility = View.VISIBLE
+            binding.rvStatisticList.visibility = View.GONE
+            binding.tvStatisticAverageCycleLength.visibility = View.GONE
         } else {
-            llNoData.visibility = View.GONE
-            recyclerView.visibility = View.VISIBLE
+            binding.llStatisticNodata.visibility = View.GONE
+            binding.rvStatisticList.visibility = View.VISIBLE
+            binding.tvStatisticAverageCycleLength.visibility = View.VISIBLE
         }
-        recyclerView.adapter!!.notifyDataSetChanged()
+        binding.rvStatisticList.adapter!!.notifyDataSetChanged()
     }
 
     override fun onDestroyView() {
@@ -92,6 +90,10 @@ class StatisticFragment : Fragment() {
         return when (item.itemId) {
             R.id.menu_statistic_import -> {
                 openImportInfoAlert()
+                true
+            }
+            R.id.menu_statistic_help -> {
+                openHelpDialog()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -113,6 +115,17 @@ class StatisticFragment : Fragment() {
         alertDialogBuilder.setPositiveButton(resources.getString(R.string.ok),
             DialogInterface.OnClickListener { _, _ -> openFilePicker() })
         alertDialogBuilder.setNegativeButton(resources.getString((R.string.cancel)),
+            DialogInterface.OnClickListener { _, _ -> {  } })
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
+    }
+
+    private fun openHelpDialog() {
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        alertDialogBuilder.setTitle(resources.getString(R.string.help))
+        alertDialogBuilder.setMessage(resources.getString(R.string.help_statistic))
+        alertDialogBuilder.setCancelable(false)
+        alertDialogBuilder.setPositiveButton(resources.getString(R.string.ok),
             DialogInterface.OnClickListener { _, _ -> {  } })
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()

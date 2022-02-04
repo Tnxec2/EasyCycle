@@ -54,5 +54,20 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
+
+        viewModel.lastCycle.observe(this, Observer {
+            if ( it != null) {
+                Log.d(
+                    "test",
+                    "lastCycle: " + it.cycleStart.toString() + ", lengthOfLastCycle: " + it.lengthOfLastCycle
+                )
+            }
+        })
+
+        viewModel.averageCycleLength.observe(this, Observer {
+            if ( it != null) {
+                Log.d("test", "averageCycleLength: " + it)
+            }
+        })
     }
 }

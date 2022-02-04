@@ -7,4 +7,8 @@
         app:showAsAction="always"
         android:title="@string/import_csv_statistic" />
 
+    <item android:id="@+id/menu_statistic_help"
+        android:icon="@drawable/ic_baseline_help_24"
+        app:showAsAction="ifRoom"
+        android:title="@string/help" />
 </menu>

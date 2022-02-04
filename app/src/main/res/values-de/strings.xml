@@ -53,7 +53,7 @@ Klicken Sie OK um CSV-Datei auszuwählen.
     <string name="appwidget_description_nodata">keine Beschreibung</string>
     <string name="save">Speichern</string>
     <string name="start_date_of_last_cycle">Startdatum von letztem Zyklus</string>
-    <string name="average_cycle_length">Länge von letztem Zyklus</string>
+    <string name="average_cycle_length">Durchschnittliche Länge von letzten Zyklen</string>
     <string name="set">Setzen</string>
     <string name="no_date_set_date_placeholder">Datum nicht gesetzt</string>
     <string name="no_length_set_placeholder">Länge nicht gesetzt</string>
@@ -70,4 +70,12 @@ Klicken Sie OK um CSV-Datei auszuwählen.
     <string name="show_on_start">Anzeige beim Programmstart</string>
     <string name="different_color_for_prediction">für Prognose andere Farbe</string>
     <string name="on_click_colorbox">Um zu Farbe zu ändern, klicken Sie auf Knopf "Bearbeiten"</string>
+    <string name="average_cycle_length_statistic">Durchschnittliche Länge von letzten 12 Monaten: %1$d</string>
+    <string name="help">Hilfe</string>
+    <string name="close">Schließen</string>
+    <string name="help_statistic"><br>
+Sie können ein Statistikeintrag löschen, in dem Sie auf diesen mehrmal hintereinander drauftippen. Es erscheint ein Bestätigungsfenster. Da müssen Sie löschen bestätigen oder abbrechen.
+
+Sie können ihre alte Statistik aus einer CSV-Datei importieren. Dafür tippen Sie auf Import-Knopf in der Titelleiste und wählen Sie anschließend eine CSV-Datei mit ihren Daten.
+    </br></string>
 </resources>

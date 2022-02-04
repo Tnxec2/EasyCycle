@@ -1,33 +1,26 @@
 package com.kontranik.easycycle.ui.calendar
 
-import android.graphics.Typeface
-import android.os.Bundle
-import android.widget.TableLayout
-import android.widget.TableRow
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import com.kontranik.easycycle.components.mycalendar.Constants
-import com.kontranik.easycycle.R
-import com.kontranik.easycycle.databinding.FragmentCalendarBinding
-import java.text.SimpleDateFormat
-import java.util.*
-
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
+import android.graphics.Typeface
+import android.os.Bundle
 import android.util.TypedValue
 import android.view.*
 import android.widget.ImageButton
+import android.widget.TableLayout
+import android.widget.TableRow
+import android.widget.TextView
 import androidx.annotation.ColorInt
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.kontranik.easycycle.MainViewModel
+import com.kontranik.easycycle.R
 import com.kontranik.easycycle.components.circularTextView.CircularTextView
-import com.kontranik.easycycle.models.LastCycle
-import com.kontranik.easycycle.storage.SettingsService
-import com.kontranik.easycycle.components.mycalendar.MarkedDate
 import com.kontranik.easycycle.constants.DefaultSettings
-import com.kontranik.easycycle.helper.PhasesHelper
+import com.kontranik.easycycle.databinding.FragmentCalendarBinding
 import com.kontranik.easycycle.helper.TimeHelper
-import com.kontranik.easycycle.models.Note
-import kotlin.collections.HashMap
+import com.kontranik.easycycle.models.LastCycle
+import java.util.*
 
 
 class CalendarFragment : Fragment() {
@@ -49,6 +42,7 @@ class CalendarFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: CalendarFragmentViewModel
+    private lateinit var sharedModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,21 +55,22 @@ class CalendarFragment : Fragment() {
         val root: View = binding.root
 
         viewModel = ViewModelProvider(requireActivity()).get(CalendarFragmentViewModel::class.java)
+        sharedModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         val prevImageButton = binding.ibPrevMonth
         prevImageButton.setOnClickListener {
             viewModel.activeDateSetToPreviousMonth()
-            loadCycleData()
+            loadCycleData(viewModel.getActiveDate())
         }
         val nextImageButton = binding.ibNextMonth
         nextImageButton.setOnClickListener {
             viewModel.activeDateSetToNextMonth()
-            loadCycleData()
+            loadCycleData(viewModel.getActiveDate())
         }
         val todayImageButton = binding.ibCalendarToday
         todayImageButton.setOnClickListener {
             viewModel.activeDateSetToday()
-            loadCycleData()
+            loadCycleData(viewModel.getActiveDate())
         }
         todayTextView = binding.tvCalendarTodaytext
 
@@ -94,7 +89,7 @@ class CalendarFragment : Fragment() {
             showDatePicker(viewModel.getActiveDate())
         }
 
-        loadCycleData()
+        loadCycleData(viewModel.getActiveDate())
 
         return root
     }
@@ -121,37 +116,37 @@ class CalendarFragment : Fragment() {
         _binding = null
     }
 
-    private fun loadCycleData() {
-        infocardTitle.text = viewModel.sdftitleDay.format(viewModel.getActiveDate().time)
+    private fun loadCycleData(activeDate: Calendar) {
+        infocardTitle.text = viewModel.sdftitleDay.format(activeDate.time)
         infocardBadge.text = ""
         infocardDescription.text = ""
         infocardAddButton.visibility = View.VISIBLE
 
-        viewModel.loadCycleData()
+        viewModel.loadCycleData(sharedModel.lastCycle.value, sharedModel.averageCycleLength.value!!)
 
 
-        val key = viewModel.sdfISO.format(viewModel.getActiveDate().time)
+        val key = viewModel.sdfISO.format(activeDate.time)
         val notes = viewModel.getNote(key)
         if ( notes != null ) {
             infocardBadge.text = notes.day.toString()
             val desc = notes.notes.joinToString("\n")
             infocardDescription.text = desc
         }
-        if ( ( viewModel.getLastCycle() != null
-                    && ( TimeHelper.isLess(viewModel.getActiveDate().time, viewModel.getLastCycle()!!.cycleStart)
-                    || TimeHelper.isEqual(viewModel.getActiveDate().time, viewModel.getLastCycle()!!.cycleStart) )
+        if ( ( sharedModel.lastCycle.value != null
+                    && ( TimeHelper.isLess(activeDate.time, sharedModel.lastCycle.value!!.cycleStart)
+                    || TimeHelper.isEqual(activeDate.time, sharedModel.lastCycle.value!!.cycleStart) )
                     )
-            || TimeHelper.isGreat(viewModel.getActiveDate().time, Date())  )
+            || TimeHelper.isGreat(activeDate.time, Date())  )
             infocardAddButton.visibility = View.INVISIBLE
 
-        initCalendar()
+        initCalendar(activeDate)
     }
 
-    private fun initCalendar() {
+    private fun initCalendar(activeDate: Calendar) {
 
         val calendar = Calendar.getInstance()
 
-        title.text = viewModel.sdftitle.format( viewModel.getActiveDate().time)
+        title.text = viewModel.sdftitle.format( activeDate.time)
 
         val typedValue = TypedValue()
         val theme = requireContext().theme
@@ -176,7 +171,7 @@ class CalendarFragment : Fragment() {
 
         for (i in 0..6) {
             val cel = layoutInflater.inflate(R.layout.mycalendar_header, null) as TextView
-            if (isSunday(i)) {
+            if (viewModel.isSunday(i)) {
                 cel.setTextColor(colSundayActiv)
             } else {
                 cel.setTextColor(colDayActiv)
@@ -197,21 +192,21 @@ class CalendarFragment : Fragment() {
 
                 val cel = layoutInflater.inflate(R.layout.mycalendar_cell, null) as CircularTextView
                 cel.setOnClickListener {
-                    viewModel.getActiveDate().time = d
-                    loadCycleData()
+                    activeDate.time = d
+                    loadCycleData(activeDate)
                 }
-                if (isSunday(j)) {
-                    if (isCurrentMonth(calendar))
+                if (viewModel.isSunday(j)) {
+                    if (viewModel.isCurrentMonth(calendar))
                         cel.setTextColor(colSundayActiv)
                     else
                         cel.setTextColor(colSundayInactiv)
                 } else {
-                    if (isCurrentMonth(calendar))
+                    if (viewModel.isCurrentMonth(calendar))
                         cel.setTextColor(colDayActiv)
                     else
                         cel.setTextColor(colDayActivInactiv)
                 }
-                if (isActiveDay(calendar)) {
+                if (viewModel.isActiveDay(calendar)) {
                     cel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                     cel.setTypeface(null, Typeface.BOLD)
                 }
@@ -230,23 +225,18 @@ class CalendarFragment : Fragment() {
         }
     }
 
-    private fun isActiveDay(calendar: Calendar) =
-        calendar.get(Calendar.YEAR) == viewModel.getActiveDate().get(Calendar.YEAR) && calendar.get(Calendar.MONTH) == viewModel.getActiveDate().get(
-            Calendar.MONTH
-        ) && calendar.get(Calendar.DAY_OF_MONTH) == viewModel.getActiveDate().get(Calendar.DAY_OF_MONTH)
-
-    private fun isCurrentMonth(calendar: Calendar) =
-        calendar.get(Calendar.YEAR) == viewModel.getActiveDate().get(Calendar.YEAR) && calendar.get(Calendar.MONTH) == viewModel.getActiveDate().get(
-            Calendar.MONTH
-        )
-
-    private fun isSunday(j: Int) = j == 6
-
     private var datePickerListener =
         OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
             viewModel.setActiveDate(dayOfMonth, monthOfYear, year)
-            viewModel.saveLastCycle()
-            loadCycleData()
+
+            var length = DefaultSettings.defaultCycleLength
+            if ( sharedModel.lastCycle.value != null)
+                length = TimeHelper.getDifferenceInDays(viewModel.getActiveDate().time, sharedModel.lastCycle.value!!.cycleStart)
+
+            val lastCycle = LastCycle(cycleStart = viewModel.getActiveDate().time, lengthOfLastCycle = length)
+
+            sharedModel.saveCycleItem(lastCycle)
+            loadCycleData(viewModel.getActiveDate())
     }
 
     private fun showDatePicker(calendar: Calendar) {
@@ -259,7 +249,7 @@ class CalendarFragment : Fragment() {
                 calendar.get(Calendar.DAY_OF_MONTH),
             )
             dialog.setTitle(getString(R.string.set_next_cycle_start))
-            if (viewModel.getLastCycle() != null) dialog.datePicker.minDate = viewModel.getLastCycle()!!.cycleStart.time
+            if (sharedModel.lastCycle.value != null) dialog.datePicker.minDate = sharedModel.lastCycle.value!!.cycleStart.time
             dialog.datePicker.maxDate = Date().time
             dialog.show()
         }

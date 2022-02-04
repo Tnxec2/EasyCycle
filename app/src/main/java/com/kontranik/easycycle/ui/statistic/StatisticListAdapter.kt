@@ -11,11 +11,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.kontranik.easycycle.MainViewModel
 import com.kontranik.easycycle.R
 import com.kontranik.easycycle.models.StatisticItem
 
 
-class StatisticListAdapter internal constructor(val context: Context?, private val items: List<StatisticItem>) :
+class StatisticListAdapter internal constructor(
+    val context: Context?,
+    private val items: List<StatisticItem>,
+    private val viewModel: MainViewModel) :
     RecyclerView.Adapter<StatisticListAdapter.ViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
@@ -36,7 +40,7 @@ class StatisticListAdapter internal constructor(val context: Context?, private v
 
         holder.itemsView.visibility = View.GONE
 
-        val adapter = StatisticListDetailsAdapter(context, item.items)
+        val adapter = StatisticListDetailsAdapter(context, item.items, viewModel)
         val layoutManager = LinearLayoutManager(context)
         holder.itemsView.adapter = adapter
         holder.itemsView.layoutManager = layoutManager

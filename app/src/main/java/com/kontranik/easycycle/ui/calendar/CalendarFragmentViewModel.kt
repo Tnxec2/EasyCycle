@@ -4,13 +4,10 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.kontranik.easycycle.components.mycalendar.Constants
 import com.kontranik.easycycle.components.mycalendar.MarkedDate
-import com.kontranik.easycycle.constants.DefaultSettings
-import com.kontranik.easycycle.database.DatabaseService
 import com.kontranik.easycycle.helper.PhasesHelper
 import com.kontranik.easycycle.helper.TimeHelper
 import com.kontranik.easycycle.models.LastCycle
 import com.kontranik.easycycle.models.Note
-import com.kontranik.easycycle.storage.SettingsService
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,12 +17,9 @@ class CalendarFragmentViewModel(val app: Application): AndroidViewModel(app) {
     val sdftitleDay = SimpleDateFormat(Constants.MyCalendarTitleDayFormat, Locale.getDefault())
     val sdfweekday = SimpleDateFormat(Constants.MyCalendarWeekdayFormat, Locale.getDefault())
 
-    private var activeDate: Calendar = Calendar.getInstance()
-    private var lastCycle: LastCycle? = null
+    private val activeDate = Calendar.getInstance()
     private var markedData: HashMap<String, MarkedDate> = hashMapOf()
     private var notes: HashMap<String, Note> = hashMapOf()
-
-    private val databaseService = DatabaseService(app)
 
     fun getActiveDate(): Calendar {
         return activeDate
@@ -35,10 +29,6 @@ class CalendarFragmentViewModel(val app: Application): AndroidViewModel(app) {
         activeDate.set(Calendar.YEAR, year)
         activeDate.set(Calendar.MONTH, monthOfYear)
         activeDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-    }
-
-    fun getLastCycle(): LastCycle? {
-        return lastCycle
     }
 
     fun containtMarkedDataKey(key: String?): Boolean {
@@ -85,9 +75,9 @@ class CalendarFragmentViewModel(val app: Application): AndroidViewModel(app) {
 
         prevMonthDate.set(Calendar.DAY_OF_MONTH, prevMonthLastDay - firstDayWeekday + 3)
 
-        for ( row in  0 until 6) {
+        for ( row in  0 until ROWS_IN_CALENDAR) {
             matrix.add(mutableListOf())
-            for (col in  0 until 7) {
+            for (col in  0 until DAYS_IN_ROW) {
                 matrix[row].add(prevMonthDate.time)
                 prevMonthDate.add(Calendar.DAY_OF_MONTH, 1)
             }
@@ -96,8 +86,7 @@ class CalendarFragmentViewModel(val app: Application): AndroidViewModel(app) {
         return matrix
     }
 
-    fun loadCycleData() {
-        lastCycle = SettingsService.loadLastCycleStart(app)
+    fun loadCycleData(lastCycle: LastCycle?, averageLength: Int) {
 
         if ( lastCycle == null ) {
             markedData.clear()
@@ -105,9 +94,8 @@ class CalendarFragmentViewModel(val app: Application): AndroidViewModel(app) {
             return
         }
 
-        val averageLength: Int = databaseService.getAverageLength() ?: lastCycle!!.lengthOfLastCycle
         val workCalendar = Calendar.getInstance()
-        workCalendar.time = lastCycle!!.cycleStart
+        workCalendar.time = lastCycle.cycleStart
 
         val tempCalendar = Calendar.getInstance()
         tempCalendar.time = activeDate.time
@@ -115,11 +103,12 @@ class CalendarFragmentViewModel(val app: Application): AndroidViewModel(app) {
 
         val maxDateCalendar = Calendar.getInstance()
         maxDateCalendar.time = tempCalendar.time
-        maxDateCalendar.add(Calendar.DAY_OF_YEAR, 42)
+
+        maxDateCalendar.add(Calendar.DAY_OF_YEAR, Companion.MAX_DAYS_IN_CALENDAR)
 
         val tempMarkDate: HashMap<String, MarkedDate> = hashMapOf()
         val tempNotes: HashMap<String, Note> = hashMapOf()
-        var lastCycleStart = lastCycle!!.cycleStart
+        var lastCycleStart = lastCycle.cycleStart
         var repeated = false
         while (workCalendar.timeInMillis < maxDateCalendar.timeInMillis) {
             var dayCycle: Int = TimeHelper.getDifferenceInDays(workCalendar.time, lastCycleStart) + 1
@@ -161,13 +150,21 @@ class CalendarFragmentViewModel(val app: Application): AndroidViewModel(app) {
         notes = tempNotes
     }
 
-    fun saveLastCycle() {
-        var length = DefaultSettings.defaultCycleLength
-        if ( lastCycle != null)
-            length = TimeHelper.getDifferenceInDays(activeDate.time, lastCycle!!.cycleStart)
+    fun isActiveDay(calendar: Calendar) =
+        calendar.get(Calendar.YEAR) == activeDate.get(Calendar.YEAR) && calendar.get(Calendar.MONTH) == activeDate.get(
+            Calendar.MONTH
+        ) && calendar.get(Calendar.DAY_OF_MONTH) == activeDate.get(Calendar.DAY_OF_MONTH)
 
-        val lastCycle = LastCycle(cycleStart = activeDate.time, lengthOfLastCycle = length)
-        SettingsService.saveLastCycleStart(lastCycle, app)
-        databaseService.add(lastCycle)
+    fun isCurrentMonth(calendar: Calendar) =
+        calendar.get(Calendar.YEAR) == activeDate.get(Calendar.YEAR) && calendar.get(Calendar.MONTH) == activeDate.get(
+            Calendar.MONTH
+        )
+
+    fun isSunday(j: Int) = j == 6
+
+    companion object {
+        private const val MAX_DAYS_IN_CALENDAR = 42 // maximal 6 Rows by 7 Days
+        private const val ROWS_IN_CALENDAR = 6
+        private const val DAYS_IN_ROW = 7
     }
 }

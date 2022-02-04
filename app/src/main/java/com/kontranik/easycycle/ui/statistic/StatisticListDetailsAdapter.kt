@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
+import com.kontranik.easycycle.MainViewModel
 import com.kontranik.easycycle.R
 import com.kontranik.easycycle.database.DatabaseService
 import com.kontranik.easycycle.models.LastCycle
@@ -20,7 +21,11 @@ import java.util.*
 
 val sdf = SimpleDateFormat("dd. MMM yyyy", Locale.getDefault())
 
-class StatisticListDetailsAdapter internal constructor(val context: Context?, private val items: MutableList<LastCycle>) :
+class StatisticListDetailsAdapter internal constructor(
+    val context: Context?,
+    private val items: MutableList<LastCycle>,
+    private val viewModel: MainViewModel
+    ) :
     RecyclerView.Adapter<StatisticListDetailsAdapter.ViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
@@ -55,9 +60,8 @@ class StatisticListDetailsAdapter internal constructor(val context: Context?, pr
     }
 
     private fun removeStatisticItem(item: LastCycle, position: Int) {
-        val service = DatabaseService(context!!)
         if (item.id != null) {
-            if ( service.deleteById(item.id!!) > 0) {
+            if ( viewModel.deleteStatisticItemById(item.id!!) > 0) {
                 items.removeAt(position)
                 notifyItemRemoved(position)
             }

@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kontranik.easycycle.MainActivity
 import com.kontranik.easycycle.MainViewModel
 import com.kontranik.easycycle.R
-import com.kontranik.easycycle.constants.DefaultSettings
 import com.kontranik.easycycle.databinding.FragmentInfoBinding
+import com.kontranik.easycycle.models.LastCycle
 import com.kontranik.easycycle.ui.settings.SettingsDialogFragment
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
 
     private val sdf = SimpleDateFormat("dd. MMM yyyy", Locale.getDefault())
 
-    private var daysOnHome = DefaultSettings.settings.daysOnHome
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,8 +62,8 @@ class HomeFragment : Fragment() {
         recyclerView = binding.rvHomeInfoList
 
         sharedModel.settings.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            daysOnHome = it.daysOnHome
-            loadInfo()
+            viewModel.setDaysOnHome(it.daysOnHome)
+            viewModel.loadCycleDays(sharedModel.lastCycle.value)
         })
 
         viewModel.cDays.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
@@ -105,8 +105,15 @@ class HomeFragment : Fragment() {
             openLengthPicker()
         }
         btnSave.setOnClickListener {
-            viewModel.saveLastCycleStart()
-            loadInfo()
+
+            if (viewModel.cycleStartDate.value != null) {
+                val lastCycle =
+                    LastCycle(
+                        cycleStart = viewModel.cycleStartDate.value!!.time,
+                        lengthOfLastCycle = viewModel.getLastCycleLength()
+                    )
+                sharedModel.saveCycleItem(lastCycle)
+            }
         }
 
         viewModel.cycleStartDate.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
@@ -116,13 +123,13 @@ class HomeFragment : Fragment() {
                 cycleStartTextView.text = getString(R.string.no_date_set_date_placeholder)
         })
 
+        sharedModel.lastCycle.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            viewModel.loadCycleDays(it)
+        })
+
         setLength()
 
         return root
-    }
-
-    private fun loadInfo() {
-        viewModel.loadCdays(daysOnHome)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
