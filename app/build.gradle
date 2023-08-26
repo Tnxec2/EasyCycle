@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.kontranik.easycycle"
         minSdk 21
-        targetSdk 32
-        versionCode 12
-        versionName "1.1.12"
+        targetSdk 33
+        versionCode 13
+        versionName "1.1.13"
         setProperty("archivesBaseName", rootProject.name + defaultConfig.versionName)
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
